@@ -11,17 +11,17 @@ public class Doctor {
     private String specialty;
     private int suiteNumber;
     private int costPerHour;
-    private LocalDate date;
+    private LocalDate apptDate;
     private int startTime;
     private int endTime;
 
 
     public LocalDate getDate() {
-        return date;
+        return apptDate;
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.apptDate = date;
     }
 
     public int getStartTime() {
