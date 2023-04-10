@@ -9,7 +9,7 @@ public class Patient {
     private String lastName;
     private String address;
     private String city;
-    private String state;
+    private String states;
     private String zipcode;
     private String patientNumber;
     private String emailAddress;
@@ -40,12 +40,12 @@ public class Patient {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
+    public String getStates() {
+        return states;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStates(String states) {
+        this.states = states;
     }
 
     public String getZipcode() {
