@@ -11,7 +11,16 @@ public class Appointment {
     private int patientId;
     private int doctorId;
     private int officeId;
+    private int appointmentDuration;
     private String description;
+
+    public int getAppointmentDuration() {
+        return appointmentDuration;
+    }
+
+    public void setAppointmentDuration(int appointmentDuration) {
+        this.appointmentDuration = appointmentDuration;
+    }
 
     public LocalDate getAppointmentDate() {
         return appointmentDate;

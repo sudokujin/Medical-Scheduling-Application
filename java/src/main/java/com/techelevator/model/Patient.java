@@ -12,7 +12,17 @@ public class Patient {
     private String state;
     private String zipcode;
     private String patientNumber;
+    private String emailAddress;
     private LocalDate birthdate;
+
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 
     public String getAddress() {
         return address;
