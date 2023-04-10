@@ -10,7 +10,6 @@ public class Appointment {
     private int appointmentId;
     private int patientId;
     private int doctorId;
-    private int officeId;
     private int appointmentDuration;
     private String description;
 
@@ -60,14 +59,6 @@ public class Appointment {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
-    }
-
-    public int getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(int officeId) {
-        this.officeId = officeId;
     }
 
     public String getDescription() {
