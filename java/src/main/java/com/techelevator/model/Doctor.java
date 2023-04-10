@@ -1,12 +1,16 @@
 package com.techelevator.model;
 
+import java.time.LocalDateTime;
+
 public class Doctor {
 
     private int doctorId;
-    private int officeId;
     private String firstName;
     private String lastName;
     private String specialty;
+    private int suiteNumber;
+    private LocalDateTime officeHours;
+    private int costPerHour;
 
     public int getDoctorId() {
         return doctorId;
@@ -14,14 +18,6 @@ public class Doctor {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
-    }
-
-    public int getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(int officeId) {
-        this.officeId = officeId;
     }
 
     public String getFirstName() {
@@ -48,6 +44,29 @@ public class Doctor {
         this.specialty = specialty;
     }
 
+    public int getSuiteNumber() {
+        return suiteNumber;
+    }
+
+    public LocalDateTime getOfficeHours() {
+        return officeHours;
+    }
+
+    public int getCostPerHour() {
+        return costPerHour;
+    }
+
+    public void setSuiteNumber(int suiteNumber) {
+        this.suiteNumber = suiteNumber;
+    }
+
+    public void setOfficeHours(LocalDateTime officeHours) {
+        this.officeHours = officeHours;
+    }
+
+    public void setCostPerHour(int costPerHour) {
+        this.costPerHour = costPerHour;
+    }
 
 
 }
