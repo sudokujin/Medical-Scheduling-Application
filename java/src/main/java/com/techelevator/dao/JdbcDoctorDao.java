@@ -60,7 +60,7 @@ public class JdbcDoctorDao implements DoctorDao{
 
     public boolean create(Doctor doctor) {
         String sql = "INSERT INTO doctor (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);" ;
         if (jdbcTemplate.update(sql, doctor.getDoctorId()) == 1) {
             System.out.println("New doctor created");
         } else {
@@ -75,7 +75,6 @@ public class JdbcDoctorDao implements DoctorDao{
         String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
                 "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time WHERE doctor_id = ?;";
         jdbcTemplate.update(sql,doctor, doctorId);
-
 
     }
 
