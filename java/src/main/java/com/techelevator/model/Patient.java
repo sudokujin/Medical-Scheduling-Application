@@ -15,7 +15,6 @@ public class Patient {
     private String emailAddress;
     private LocalDate birthdate;
 
-
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -96,4 +95,22 @@ public class Patient {
         this.lastName = lastName;
     }
 
+    public Patient() {
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId=" + patientId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", states='" + states + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", patientNumber='" + patientNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", birthdate=" + birthdate +
+                '}';
+    }
 }

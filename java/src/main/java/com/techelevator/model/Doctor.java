@@ -15,7 +15,6 @@ public class Doctor {
     private int startTime;
     private int endTime;
 
-
     public LocalDate getDate() {
         return apptDate;
     }
@@ -91,5 +90,22 @@ public class Doctor {
         this.costPerHour = costPerHour;
     }
 
+    public Doctor() {
+    }
 
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "doctorId=" + doctorId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", suiteNumber=" + suiteNumber +
+                ", costPerHour=" + costPerHour +
+                ", apptDate=" + apptDate +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }

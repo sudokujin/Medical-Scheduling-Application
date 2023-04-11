@@ -68,5 +68,27 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
+    public Review(int reviewId, int patientId, int doctorId, int reviewRating, String reviewTitle, String reviewBody, LocalDate reviewDate) {
+        this.reviewId = reviewId;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.reviewRating = reviewRating;
+        this.reviewTitle = reviewTitle;
+        this.reviewBody = reviewBody;
+        this.reviewDate = reviewDate;
+    }
 
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", patientId=" + patientId +
+                ", doctorId=" + doctorId +
+                ", reviewRating=" + reviewRating +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", reviewBody='" + reviewBody + '\'' +
+                ", reviewDate=" + reviewDate +
+                '}';
+    }
 }

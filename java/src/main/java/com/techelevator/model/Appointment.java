@@ -69,6 +69,26 @@ public class Appointment {
         this.description = description;
     }
 
+    public Appointment(LocalDate appointmentDate, LocalTime appointmentTime, int appointmentId, int patientId, int doctorId, int appointmentDuration, String description) {
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.appointmentDuration = appointmentDuration;
+        this.description = description;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentDate=" + appointmentDate +
+                ", appointmentTime=" + appointmentTime +
+                ", appointmentId=" + appointmentId +
+                ", patientId=" + patientId +
+                ", doctorId=" + doctorId +
+                ", appointmentDuration=" + appointmentDuration +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
