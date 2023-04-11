@@ -7,7 +7,6 @@ import java.time.LocalDate;
 public class Doctor {
 
     private int doctorId;
-    private int userId;
     private String firstName;
     private String lastName;
     private String specialty;
@@ -17,14 +16,6 @@ public class Doctor {
     private Time startTime;
     private Time endTime;
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
     public Date getDate() {
         return apptDate;
     }

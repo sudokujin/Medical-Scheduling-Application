@@ -59,7 +59,7 @@ public class JdbcDoctorDao implements DoctorDao{
         }
 
     public boolean create(Doctor doctor) {
-        String sql = "INSERT INTO doctor (user_id, first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time) " +
+        String sql = "INSERT INTO doctor (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
         if (jdbcTemplate.update(sql, doctor.getDoctorId()) == 1) {
             System.out.println("New doctor created");
@@ -72,7 +72,7 @@ public class JdbcDoctorDao implements DoctorDao{
 
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
-        String sql = "UPDATE doctor SET user_id=?, first_name=?,last_name,specialty=?," +
+        String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
                 "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time WHERE doctor_id = ?;";
         jdbcTemplate.update(sql,doctor, doctorId);
 
@@ -84,7 +84,6 @@ public class JdbcDoctorDao implements DoctorDao{
     private Doctor mapRowToDoctor(SqlRowSet results) {
         Doctor doctor = new Doctor();
         doctor.setDoctorId(results.getInt("doctor_id"));
-        doctor.setUserId(results.getInt("user_id"));
         doctor.setFirstName(results.getString("first_name"));
         doctor.setLastName(results.getString("last_name"));
         doctor.setSpecialty(results.getString("specialty"));
