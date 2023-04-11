@@ -19,8 +19,8 @@ CREATE TABLE doctor (
 	suite_number int NOT NULL,
 	costPerHour int NOT NULL,
 	appt_date date NOT NULL,
-	start_time int NOT NULL,
-	end_time int NOT NULL,
+	start_time time NOT NULL,
+	end_time time NOT NULL,
 	
 	CONSTRAINT pk_doctor_doctor_id PRIMARY KEY (doctor_id),
 	CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users (user_id)
