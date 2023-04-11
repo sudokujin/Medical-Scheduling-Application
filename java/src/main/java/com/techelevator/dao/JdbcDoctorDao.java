@@ -31,7 +31,7 @@ public class JdbcDoctorDao implements DoctorDao{
     private Doctor mapRowToDoctor(SqlRowSet results) {
         Doctor doctor = new Doctor();
         doctor.setDoctorId(results.getInt("doctor_id"));
-        doctor.set(results.getInt("user_id")); //need to add userId in Doctor class
+        doctor.setUserId(results.getInt("user_id"));
         doctor.setFirstName(results.getString("first_name"));
         doctor.setLastName(results.getString("last_name"));
         doctor.setSpecialty(results.getString("specialty"));

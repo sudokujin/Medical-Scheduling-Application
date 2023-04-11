@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface DoctorDao {
 
-    List<Doctor> findAll();
+//    List<Doctor> findAll();
 
     Doctor getDoctorById(int doctorId);
 
-    User findByDoctorLastName(String doctorLastName);
-
-    int findIdByDoctorLastName (String doctorLastName);
-    //need doc ID to write review and make appt
-
-    boolean create(String doctorLastName, String doctorFirstName, String password, String role);
+//    User findByDoctorLastName(String doctorLastName);
+//
+//    int findIdByDoctorLastName (String doctorLastName);
+//    //need doc ID to write review and make appt
+//
+//    boolean create(String doctorLastName, String doctorFirstName, String password, String role);
 }

@@ -1,8 +1,8 @@
 package com.techelevator.model;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Doctor {
 
@@ -13,15 +13,23 @@ public class Doctor {
     private String specialty;
     private int suiteNumber;
     private int costPerHour;
-    private LocalDate apptDate;
+    private Date apptDate;
     private Time startTime;
     private Time endTime;
 
-    public LocalDate getDate() {
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    public Date getDate() {
         return apptDate;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.apptDate = date;
     }
 
