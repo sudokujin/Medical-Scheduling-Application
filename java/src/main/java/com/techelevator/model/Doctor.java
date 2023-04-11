@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class Doctor {
 
     private int doctorId;
+    private int userId;
     private String firstName;
     private String lastName;
     private String specialty;
