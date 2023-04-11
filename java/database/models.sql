@@ -1,10 +1,18 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS doctor;
-DROP TABLE IF EXISTS patient;
-DROP TABLE IF EXISTS appointment;
-DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS review, appointment, patient, doctor, users;
+
+CREATE TABLE users (
+	user_id SERIAL,
+	username varchar(50) NOT NULL UNIQUE,
+	password_hash varchar(200) NOT NULL,
+	role varchar(50) NOT NULL,
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+
 CREATE TABLE doctor (
 	doctor_id SERIAL NOT NULL,
+	user_id int NOT NULL,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	specialty varchar(50) NOT NULL,
@@ -14,10 +22,12 @@ CREATE TABLE doctor (
 	start_time int NOT NULL,
 	end_time int NOT NULL,
 	
-	CONSTRAINT pk_doctor_doctor_id PRIMARY KEY (doctor_id)
+	CONSTRAINT pk_doctor_doctor_id PRIMARY KEY (doctor_id),
+	CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 CREATE TABLE patient (
 	patient_id SERIAL NOT NULL,
+	user_id int NOT NULL,
 	first_name VARCHAR(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	address varchar(100) NOT NULL,
@@ -28,7 +38,8 @@ CREATE TABLE patient (
 	patient_number varchar(50) NOT NULL,
 	birthdate date NOT NULL,
 	
-	CONSTRAINT pk_patient_patient_id PRIMARY KEY (patient_id)
+	CONSTRAINT pk_patient_patient_id PRIMARY KEY (patient_id),
+	CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 CREATE TABLE appointment (
 	appointment_id SERIAL NOT NULL,
