@@ -25,7 +25,7 @@ public class JdbcDoctorDao implements DoctorDao{
     @Override
     public Doctor getDoctorById(int doctorId){
         Doctor doctor = null;
-        String sql = "SELECT *" + "FROM doctor" + "WHERE doctor_id = ?" ;
+        String sql = "SELECT * " + "FROM doctor " + "WHERE doctor_id = ?" ;
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
 
         if(results.next()){
