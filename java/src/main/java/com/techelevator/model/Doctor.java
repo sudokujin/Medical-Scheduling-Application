@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -12,8 +13,8 @@ public class Doctor {
     private int suiteNumber;
     private int costPerHour;
     private LocalDate apptDate;
-    private int startTime;
-    private int endTime;
+    private Time startTime;
+    private Time endTime;
 
     public LocalDate getDate() {
         return apptDate;
@@ -23,19 +24,19 @@ public class Doctor {
         this.apptDate = date;
     }
 
-    public int getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
