@@ -40,6 +40,8 @@ CREATE TABLE appointment (
 	doctor_id int NOT NULL,
 	appointment_duration int NOT NULL,
 	description varchar(100) NOT NULL,
+	appointmentDate_date date NOT NULL,
+	appointmentDate_time time NOT NULL,
 
 	CONSTRAINT pk_appointment_appointment_id PRIMARY KEY (appointment_id),
 	CONSTRAINT FK_doctor FOREIGN KEY (doctor_id) REFERENCES doctor (doctor_id),
