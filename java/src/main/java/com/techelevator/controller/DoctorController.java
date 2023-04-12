@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/doctors")
 @RestController
 @CrossOrigin
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 public class DoctorController {
     private final DoctorDao doctorDao;
 
@@ -22,10 +22,10 @@ public class DoctorController {
         return doctorDao.getDoctorById(id);
     }
 
-//    @GetMapping("")
-//    public List<Doctor> getAllDoctors() {
-//        return doctorDao.findAllDoctors();
-//    }
+    @GetMapping("")
+    public List<Doctor> getAllDoctors() {
+        return doctorDao.findAll();
+    }
 
 
 }
