@@ -3,6 +3,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Doctor;
 import com.techelevator.model.User;
+import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -38,10 +39,14 @@ public class JdbcDoctorDao implements DoctorDao{
     public List <Doctor> findAll() {
         List<Doctor> doctors = new ArrayList<>();
         String sql = "SELECT * FROM doctor;";
+        try {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while(result.next()) {
             doctors.add(mapRowToDoctor(result));
         }
+            } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+                throw new RuntimeException("No doctor found");
+            }
         return doctors;
     }
 
@@ -77,6 +82,17 @@ public class JdbcDoctorDao implements DoctorDao{
         jdbcTemplate.update(sql,doctor, doctorId);
 
     }
+
+    @Override
+    public boolean deleteDoctorById(int doctorId) {
+        String deleteDoctorById = "delete from doctor where doctor_id = ?";
+        if (jdbcTemplate.update(deleteDoctorById, doctorId)==1) {
+            System.out.println("New doctor created");}
+        else{
+            throw new RuntimeException("Failed to delete doctor");
+            }
+        return true;
+        }
 
 
 

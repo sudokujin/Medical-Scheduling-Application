@@ -1,13 +1,16 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 
 public class Doctor {
-
+    @NotBlank
     private int doctorId;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     private String specialty;
     private int suiteNumber;

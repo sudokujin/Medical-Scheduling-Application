@@ -17,4 +17,6 @@ public interface DoctorDao {
 
     void updateDoctor (int doctorId, Doctor doctor);
 
+    boolean deleteDoctorById(int doctorId);
+
 }
