@@ -66,8 +66,8 @@ public class JdbcPatientDao implements PatientDao{
 
     @Override
     public boolean create(Patient patient) {
-        String sql = "INSERT INTO patient(patient_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
+        String sql = "INSERT INTO patient(first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
         if (jdbcTemplate.update(sql, patient.getPatientId()) == 1) {
             System.out.println("New patient created");
         } else {

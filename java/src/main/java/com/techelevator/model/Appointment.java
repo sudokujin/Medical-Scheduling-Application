@@ -1,12 +1,14 @@
 package com.techelevator.model;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Appointment {
 
-    private LocalDate appointmentDate;
-    private LocalTime appointmentTime;
+    private Date appointmentDate;
+    private Time appointmentTime;
     private int appointmentId;
     private int patientId;
     private int doctorId;
@@ -21,19 +23,19 @@ public class Appointment {
         this.appointmentDuration = appointmentDuration;
     }
 
-    public LocalDate getAppointmentDate() {
+    public Date getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
-    public LocalTime getAppointmentTime() {
+    public Time getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(LocalTime appointmentTime) {
+    public void setAppointmentTime(Time appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
 
@@ -69,14 +71,7 @@ public class Appointment {
         this.description = description;
     }
 
-    public Appointment(LocalDate appointmentDate, LocalTime appointmentTime, int appointmentId, int patientId, int doctorId, int appointmentDuration, String description) {
-        this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
-        this.appointmentId = appointmentId;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.appointmentDuration = appointmentDuration;
-        this.description = description;
+    public Appointment(){
     }
 
     @Override
