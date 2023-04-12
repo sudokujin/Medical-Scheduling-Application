@@ -78,7 +78,7 @@ public class JdbcDoctorDao implements DoctorDao{
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
         String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
-                "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time WHERE doctor_id = ?;";
+                "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time=? WHERE doctor_id = ?;";
         jdbcTemplate.update(sql,doctor, doctorId);
 
     }
@@ -87,7 +87,7 @@ public class JdbcDoctorDao implements DoctorDao{
     public boolean deleteDoctorById(int doctorId) {
         String deleteDoctorById = "delete from doctor where doctor_id = ?";
         if (jdbcTemplate.update(deleteDoctorById, doctorId)==1) {
-            System.out.println("New doctor created");}
+            System.out.println("Doctor is deleted successfully");}
         else{
             throw new RuntimeException("Failed to delete doctor");
             }

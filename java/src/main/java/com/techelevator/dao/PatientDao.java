@@ -7,14 +7,15 @@ import com.techelevator.model.User;
 import java.util.List;
 
 public interface PatientDao {
-    List<Patient> findAll();
+    List<Patient> findAllPatients();
 
-    Doctor getPatientById(int doctorId);
+    Patient getPatientById(int patientId);
 
-    User findByDoctorLastName(String doctorLastName);
+    int findPatientIdByPatientLastName (String patientLastName);
 
-    int findIdByDoctorLastName (String doctorLastName);
-    //need doc ID to write review and make appt
+    boolean create(Patient patient);
 
-    boolean create(String doctorLastName, String doctorFirstName, String password, String role);
+    boolean deletePatientById(int patientId);
+
+    void updatePatient (int patientId, Patient patient);
 }

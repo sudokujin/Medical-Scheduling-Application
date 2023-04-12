@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Patient {
 
@@ -13,7 +14,7 @@ public class Patient {
     private String zipcode;
     private String patientNumber;
     private String emailAddress;
-    private LocalDate birthdate;
+    private Date birthdate;
 
     public String getEmailAddress() {
         return emailAddress;
@@ -63,11 +64,11 @@ public class Patient {
         this.patientNumber = patientNumber;
     }
 
-    public LocalDate getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
