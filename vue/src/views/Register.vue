@@ -1,4 +1,8 @@
 <template>
+<v-container fill-height fluid>
+  <v-row align="center"
+      justify="center">
+      <v-col>
   <div id="register" class="text-center">
     <form @submit.prevent="register">
       <h1>Create Account</h1>
@@ -21,6 +25,9 @@
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
+  </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>

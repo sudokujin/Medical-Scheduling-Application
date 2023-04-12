@@ -1,5 +1,9 @@
 <template>
-  <div id="login">
+<v-container fill-height fluid>
+  <v-row align="center"
+      justify="center">
+      <v-col>
+  <div id="login" class = "text-center">
     <form @submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -21,6 +25,9 @@
       <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
   </div>
+  </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>
