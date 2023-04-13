@@ -18,4 +18,12 @@ INSERT INTO doctor
 (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
 VALUES('Youngjin','Kwon','Psychologist', 7, 9000, '2023/10/09', '8:00:00', '5:00:00');
 
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_appuser;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_appuser;
+
 COMMIT TRANSACTION;
