@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Appointment;
+import com.techelevator.model.Patient;
+import com.techelevator.model.Review;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,66 +22,62 @@ public class JdbcReviewDao implements ReviewDao {
     }
 
     @Override
-    public Appointment getAppointmentById(int appointmentId){
-        Appointment appointment = null;
-        String sql = "SELECT * " + "FROM appointment " + "WHERE appointment_id = ?" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, appointmentId);
+    public Review getReviewByPatientId(int patientId){
+        Review review = null;
+        String sql = "SELECT * FROM review JOIN patient on review.patient_id = patient.patient_id" +
+                "WHERE review.patient_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientId);
 
         if(results.next()){
-            appointment = mapRowToAppointment(results);
+            review = mapRowToReview(results);
         }
-        return appointment;
+        return review;
     }
 
 
+
     @Override
-    public List<Appointment> getAppointmentsByPatientId(int patientId) {
-        List<Appointment> appointments = new ArrayList<>();
-        String sql = "SELECT * FROM appointment JOIN patient ON appointment.patient_id=patient.patient_id WHERE patient.patient_id = ?;";
+    public List<Review> listAllReviews() {
+        List<Review> reviews = new ArrayList<>();
+        String sql = "SELECT * FROM review;";
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
             while(result.next()) {
-                appointments.add(mapRowToAppointment(result));
+                reviews.add(mapRowToReview(result));
             }
         } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
-            throw new RuntimeException("No appointment found");
+            throw new RuntimeException("No review found");
         }
-        return appointments;
-    }
-
-    @Override
-    public List<Appointment> getAppointmentsByDoctorId(int doctorId) {
-        List<Appointment> appointments = new ArrayList<>();
-        String sql = "SELECT * FROM appointment JOIN doctor ON appointment.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;";
-        try {
-            SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-            while(result.next()) {
-                appointments.add(mapRowToAppointment(result));
-            }
-        } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
-            throw new RuntimeException("No appointment found");
-        }
-        return appointments;
-    }
-
-    @Override
-    public void createAppointment(Appointment appointment) {
-        String sql = "INSERT INTO appointment(patient_id, doctor_id, appointment_duration, description) VALUES (?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql, appointment.getPatientId(), appointment.getDoctorId(), appointment.getAppointmentDuration(), appointment.getDescription());
+        return reviews;
     }
 
 
     @Override
-    public void updateAppointment(int appointmentId, Appointment appointment) {
-        String sql = "UPDATE appointment SET appointment_id=?, patient_id=?, doctor_id=?, appointment_duration=?, description=? WHERE appointment_id=?;";
-        jdbcTemplate.update(sql,appointment, appointmentId);
-
+    public void createReview(Review review) {
+        String sql = "INSERT INTO review(review_title, review_body, review_rating, review_date, doctor_id, patient_id) VALUES (?, ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, review.getReviewTitle(), review.getReviewBody(), review.getReviewRating(), review.getReviewDate(), review.getDoctorId(), review.getPatientId());
     }
 
+
     @Override
-    public void deleteAppointment(int appointmentId) {
-        String sql = "DELETE FROM appointment WHERE appointment_id=?;";
-        jdbcTemplate.update(sql,appointmentId);
+    public void deleteReview(int reviewId) {
+        String sql = "DELETE FROM review WHERE review_id=?;";
+        jdbcTemplate.update(sql,reviewId);
+    }
+
+
+    private Review mapRowToReview(SqlRowSet result) {
+        Review review = new Review();
+        review.setReviewId(result.getInt("review_id"));
+        review.setReviewTitle(result.getString("review_title"));
+        review.setReviewBody(result.getString("review_body"));
+        review.setReviewRating(result.getInt("review_rating"));
+        review.setReviewDate(result.getDate("review_date"));
+        review.setPatientId(result.getInt("patient_id"));
+
+        return review;
+
     }
 
 }

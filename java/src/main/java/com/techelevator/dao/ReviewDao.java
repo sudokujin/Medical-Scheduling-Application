@@ -12,4 +12,7 @@ public interface ReviewDao {
 
     void createReview(Review review);
 
+    void deleteReview(int reviewId);
+
+
 }

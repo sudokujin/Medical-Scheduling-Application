@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Review {
 
@@ -10,7 +11,7 @@ public class Review {
     private int reviewRating;
     private String reviewTitle;
     private String reviewBody;
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
     public int getReviewId() {
         return reviewId;
@@ -60,22 +61,16 @@ public class Review {
         this.reviewBody = reviewBody;
     }
 
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 
-    public Review(int reviewId, int patientId, int doctorId, int reviewRating, String reviewTitle, String reviewBody, LocalDate reviewDate) {
-        this.reviewId = reviewId;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.reviewRating = reviewRating;
-        this.reviewTitle = reviewTitle;
-        this.reviewBody = reviewBody;
-        this.reviewDate = reviewDate;
+    public Review() {
+
     }
 
 
