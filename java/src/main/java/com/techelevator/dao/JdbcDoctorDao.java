@@ -73,7 +73,6 @@ public class JdbcDoctorDao implements DoctorDao{
             throw new RuntimeException("Failed to create new doctor");
         }
         return true;
-
     }
 
     @Override
