@@ -1,15 +1,14 @@
 <template>
-<v-container>
-  <v-layout>
-    <doctor-list v-if="getRolePatient"  />
-  </v-layout>
-  <v-layout>
-    <patient-list v-if="getRoleDoctor" />
-  </v-layout>
-  <v-layout>
-    <admin v-if="getRoleAdmin"/>
-  </v-layout>
-</v-container>
+  <v-container>
+    <v-layout>
+      <doctor-list v-if="getRolePatient"  />
+      <patient-list v-else-if="getRoleDoctor" />
+    </v-layout>
+    <v-layout v-if="getRoleAdmin">
+      <doctor-list />
+      <patient-list />
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -20,9 +19,9 @@ export default {
   name: 'home',
   components: {
     DoctorList,
-    PatientList
+    PatientList,
   },
-  methods: {
+  computed: {
     getRoleAdmin() {
       return this.$store.state.user.authorities[0].name === 'ROLE_ADMIN'
     },
