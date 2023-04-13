@@ -22,6 +22,6 @@ export default {
     },
 
     deleteDoctor(id) {
-        return http.delte(`/doctors/${id}`);
+        return http.delete(`/doctors/${id}`);
     }
 }
