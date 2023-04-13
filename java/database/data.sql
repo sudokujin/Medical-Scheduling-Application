@@ -20,5 +20,9 @@ VALUES('Youngjin','Kwon','Psychologist', 7, 9000, '2023/10/09', '8:00:00', '5:00
 INSERT INTO patient(
 	first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
 	VALUES ('Pan', 'Bam', 'Panda Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/09');
+	
+INSERT INTO public.review(
+	review_title, review_body, review_rating, review_date, doctor_id, patient_id)
+	VALUES ('bad doctor', 'really bad', 1, '2023/09/08', 3, 1);
 
 COMMIT TRANSACTION;
