@@ -1,13 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="black"
-      dark
-    >
-    <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-    <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </v-app-bar>
+    <navbar />
     <v-main>
       <router-view/>
     </v-main>
@@ -15,12 +8,14 @@
 </template>
 
 <script>
-
+import Navbar from './components/Navbar.vue';
 export default {
   name: 'App',
+  components: { Navbar },
+  data() {
+    return {
 
-  data: () => ({
-    //
-  }),
+    }
+  }
 };
 </script>
