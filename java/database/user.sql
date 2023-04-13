@@ -16,6 +16,10 @@ TO final_capstone_owner;
 CREATE USER final_capstone_appuser
 WITH PASSWORD 'finalcapstone';
 
+
+
+--run these any time you create the table
+
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
 TO final_capstone_appuser;
