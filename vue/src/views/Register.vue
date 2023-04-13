@@ -1,53 +1,191 @@
 <template>
-<v-container fill-height fluid>
-  <v-row align="center"
-      justify="center">
-      <v-col>
-  <div id="register" class="text-center">
-    <form @submit.prevent="register">
-      <h1>Create Account</h1>
-      <div role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
-      </div>
-      <button type="submit">Create Account</button>
-      <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
-    </form>
-  </div>
-  </v-col>
-  </v-row>
-</v-container>
+    <v-container fill-height fluid>
+      <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
+        <div id="register" class="text-center">
+          <v-form id="registerForm" v-model="valid" @submit.prevent="register(); registerPatient();">
+
+            <v-text-field
+                id="username"
+                v-model="user.username"
+                :rules="nameRules"
+                :counter="50"
+                label="Username"
+                required
+              ></v-text-field>
+
+            <v-text-field 
+                type="password"
+                id="password"
+                v-model="user.password"
+                label="Password"
+                :counter="20"
+                :rules="passwordRules"
+                required
+            > </v-text-field>
+
+            <v-text-field 
+                type="password"
+                id="confirmPassword"
+                v-model="user.confirmPassword"
+                label="Confirm Password"
+                :counter="20"
+                :rules="passwordRules"
+                required
+            > </v-text-field>
+
+            <v-text-field
+                v-model="patient.firstname"
+                :rules="nameRules"
+                :counter="50"
+                label="First name"
+                required
+              ></v-text-field>
+
+
+
+            <v-text-field
+              v-model="patient.lastname"
+              :rules="nameRules"
+              :counter="50"
+              label="Last name"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.email_address"
+              :rules="emailRules"
+              :counter="50"
+              label="E-mail"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.address"
+              :rules="nameRules"
+              :counter="100"
+              label="Address"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.city"
+              :rules="nameRules"
+              :counter="50"
+              label="City"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.state"
+              :rules="nameRules"
+              :counter="50"
+              label="State"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.zipcode"
+              :rules="nameRules"
+              :counter="50"
+              label="Zipcode"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.phonenumber"
+              :rules="nameRules"
+              :counter="50"
+              label="Phone Number"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="patient.birthdate"
+              :rules="nameRules"
+              :counter="100"
+              label="Birth date"
+              required
+            ></v-text-field>
+
+
+            <v-btn type="submit" :disabled="!valid">Create Account</v-btn>
+
+    
+            <v-btn @click:clear="clearInput">
+              Clear Fields
+            </v-btn>
+
+            <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+          </v-form>
+        </div>
+      </v-col>
+    </v-container>
 </template>
 
 <script>
 import authService from '../services/AuthService';
 
-export default {
-  name: 'register',
-  data() {
-    return {
-      user: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
-      },
-      registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
-    };
-  },
-  methods: {
+  export default {
+    name: "RegisterForm",
+    data: () => ({
+        user: {
+            username: '',
+            password: '',
+            confirmPassword: '',
+            role: 'user',
+        },
+        patient: {
+            firstname: '',
+            lastname: '',
+            address: '',
+            city: '',
+            states: '',
+            zipcode: '',
+            email_address: '',
+            phonenumber: '',
+            birthdate: '',
+        },
+        registrationErrors: false,
+        registrationErrorMsg: 'There were problems registering this user.',
+      valid: false,
+      nameRules: [
+        value => {
+          if (value) return true
+
+          return 'Name is required.'
+        },
+        value => {
+          if (value?.length <= 50) return true
+
+          return 'Name must be less than or equal to 50 characters.'
+        },
+      ],
+      emailRules: [
+        value => {
+          if (value) return true
+
+          return 'E-mail is required.'
+        },
+        value => {
+          if (/.+@.+\..+/.test(value) && value?.length <= 50) return true
+
+          return 'E-mail must be valid and less than 50 characters.'
+        },
+      ],
+      passwordRules: [
+        value => {
+          if (value) return true
+
+          return 'Password is required.'
+        },
+        value => {
+          if (value?.length >= 8 && value?.length <= 20) return true
+
+          return 'Password must be at least between 8  and 20 characters.'
+        },
+      ]
+    }),
+    methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
@@ -76,15 +214,12 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
-  },
-};
-</script>
+    clearInput() {
+        document.getElementById("registerForm").reset();
+    },
+    registerPatient() {
 
-<style scoped>
-.form-input-group {
-  margin-bottom: 1rem;
-}
-label {
-  margin-right: 0.5rem;
-}
-</style>
+    }
+    }
+  }
+</script>
