@@ -24,5 +24,9 @@ INSERT INTO patient(
 INSERT INTO public.review(
 	review_title, review_body, review_rating, review_date, doctor_id, patient_id)
 	VALUES ('bad doctor', 'really bad', 1, '2023/09/08', 3, 1);
-
+	
+INSERT INTO public.appointment(
+	patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+	VALUES (1, 3, 30, 'brain fog', '2023/08/08', '8:00:00');
+	
 COMMIT TRANSACTION;
