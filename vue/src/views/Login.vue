@@ -3,7 +3,7 @@
   <v-row align="center"
       justify="center">
       <v-col>
-  <div id="login" class = "text-center">
+  <div id="login" class ="text-center">
     <form @submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">

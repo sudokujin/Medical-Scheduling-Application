@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+   
       <div class="display-4 ma-4 d-flex justify-center">
         All Doctors
       </div>
@@ -9,7 +9,7 @@
         :headers="headers"
         >
       </v-data-table>
-    </v-container>
+    
   </v-app>
 </template>
 
@@ -25,7 +25,7 @@ export default {
         {text: 'Last Name', value: 'lastName'},
         {text: 'Specialty', value: 'specialty'},
         {text: 'Suite', value: 'suiteNumber'},
-        {text: 'Cost', value: 'costPerHour'},
+        {text: 'Cost Per Hour', value: 'costPerHour'},
       ]
     }
   },

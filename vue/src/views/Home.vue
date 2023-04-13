@@ -1,7 +1,8 @@
 <template>
 <v-container>
-  <h1> Doctors </h1>
-  <doctor-list />
+  <v-layout>
+    <doctor-list />
+  </v-layout>
 </v-container>
 </template>
 
