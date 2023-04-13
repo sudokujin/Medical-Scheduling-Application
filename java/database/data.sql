@@ -1,7 +1,6 @@
+-- STEP 3
 BEGIN TRANSACTION;
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO doctor
 (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
 VALUES('Qing','Jin','Dermontology',3, 3000,'2023/10/08' , '8:00:00', '5:00:00');
@@ -18,12 +17,8 @@ INSERT INTO doctor
 (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
 VALUES('Youngjin','Kwon','Psychologist', 7, 9000, '2023/10/09', '8:00:00', '5:00:00');
 
-GRANT SELECT, INSERT, UPDATE, DELETE
-ON ALL TABLES IN SCHEMA public
-TO final_capstone_appuser;
-
-GRANT USAGE, SELECT
-ON ALL SEQUENCES IN SCHEMA public
-TO final_capstone_appuser;
+INSERT INTO patient(
+	first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
+	VALUES ('Pan', 'Bam', 'Panda Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/09');
 
 COMMIT TRANSACTION;

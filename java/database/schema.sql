@@ -1,3 +1,4 @@
+-- step 1
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS review, appointment, patient, doctor, users, doctor_users, patient_users;
 CREATE TABLE users (
