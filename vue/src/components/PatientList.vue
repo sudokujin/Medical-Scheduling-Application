@@ -1,43 +1,43 @@
 <template>
-  <v-app>
+    <v-app>
    
       <div class="display-4 ma-4 d-flex justify-center">
-        Doctors
+        Patients
       </div>
       <v-data-table
-        :items="doctors"
+        :items="patients"
         :headers="headers"
         >
       </v-data-table>
-    
   </v-app>
 </template>
 
 <script>
-import doctorService from '../services/DoctorService.js';
+import patientService from '../services/PatientService.js';
 
 export default {
-  name: "doctor-list",
+  name: "patient-list",
   computed: {
     headers() {
       return [
         {text: 'First Name', value: 'firstName'},
         {text: 'Last Name', value: 'lastName'},
-        {text: 'Specialty', value: 'specialty'},
-        {text: 'Suite', value: 'suiteNumber'},
-        {text: 'Cost Per Hour', value: 'costPerHour'},
+        {text: 'Email Address', value: 'emailAddress'},
+        {text: 'City', value: 'city'},
+        {text: 'State', value: 'states'},
       ]
     }
   },
   data() {
     return {
-      doctors: [],  
+      patients: [],  
     }
   },
   created() {
-      doctorService.getAllDoctors().then(response => {
+      patientService.list().then(response => {
       this.doctors = response.data;
     })
   }
 };
 </script>
+
