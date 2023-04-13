@@ -11,5 +11,17 @@ export default {
 
     get(id) {
         return http.get(`/doctors/${id}`);
+    },
+
+    createDoctor(doctor) {
+        return http.post('/doctors', doctor);
+    },
+    
+    updateDoctor(id, doctor) {
+        return http.put(`/doctors/${id}`, doctor);
+    },
+
+    deleteDoctor(id) {
+        return http.delete(`/doctors/${id}`);
     }
 }
