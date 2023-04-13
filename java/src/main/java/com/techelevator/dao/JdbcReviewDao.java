@@ -24,7 +24,7 @@ public class JdbcReviewDao implements ReviewDao {
     @Override
     public Review getReviewByPatientId(int patientId){
         Review review = null;
-        String sql = "SELECT * FROM review JOIN patient on review.patient_id = patient.patient_id" +
+        String sql = "SELECT * FROM review JOIN patient on review.patient_id = patient.patient_id " +
                 "WHERE review.patient_id = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, patientId);
