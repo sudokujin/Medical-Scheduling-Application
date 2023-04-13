@@ -1,6 +1,12 @@
 -- STEP 3
 BEGIN TRANSACTION;
 
+INSERT INTO users (username,password_hash,role) 
+VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+
+INSERT INTO users (username,password_hash,role) 
+VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
 INSERT INTO doctor
 (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
 VALUES('Qing','Jin','Dermontology',3, 3000,'2023/10/08' , '8:00:00', '5:00:00');

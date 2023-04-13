@@ -19,4 +19,6 @@ public interface DoctorDao {
 
     boolean deleteDoctorById(int doctorId);
 
+    boolean isDoctor();
+
 }

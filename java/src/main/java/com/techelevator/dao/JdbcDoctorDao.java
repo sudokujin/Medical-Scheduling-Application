@@ -95,7 +95,19 @@ public class JdbcDoctorDao implements DoctorDao{
         return true;
         }
 
+     @Override
+     public boolean isDoctor(){
+        String sql = "select * from doctor join doctor_users on doctor.doctor_id = doctor_users.doctor_id \n" +
+                "join users on users.user_id = doctor_users.user_id\n" +
+                "where role ='doctor';";
+         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
 
+         if(result.next()){
+             return true;
+         }
+         return false;
+
+     }
 
     private Doctor mapRowToDoctor(SqlRowSet results) {
         Doctor doctor = new Doctor();
