@@ -13,11 +13,11 @@ public interface DoctorDao {
 
     int findIdByDoctorLastName (String doctorLastName);
 
-    boolean create(Doctor doctor);
+    void create(Doctor doctor);
 
     void updateDoctor (int doctorId, Doctor doctor);
 
-    boolean deleteDoctorById(int doctorId);
+    void deleteDoctorById(int doctorId);
 
     boolean isDoctor();
 

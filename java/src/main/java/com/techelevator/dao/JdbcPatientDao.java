@@ -80,14 +80,10 @@ public class JdbcPatientDao implements PatientDao{
     }
 
     @Override
-    public boolean deletePatientById(int patientId) {
+    public void deletePatientById(int patientId) {
         String sql = "delete from patient where patient_id = ?";
-        if (jdbcTemplate.update(sql, patientId)==1) {
-            System.out.println("Patient is deleted successfully");}
-        else{
-            throw new RuntimeException("Failed to delete patient");
-        }
-        return true;
+        jdbcTemplate.update(sql, patientId);
+
     }
 
 
