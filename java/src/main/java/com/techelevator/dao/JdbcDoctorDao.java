@@ -79,7 +79,8 @@ public class JdbcDoctorDao implements DoctorDao{
     public void updateDoctor(int doctorId, Doctor doctor) {
         String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
                 "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time=? WHERE doctor_id = ?;";
-        jdbcTemplate.update(sql,doctor, doctorId);
+        jdbcTemplate.update(sql,doctor.getDoctorId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
+                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getDate(),doctor.getStartTime(),doctor.getEndTime());
 
     }
 
