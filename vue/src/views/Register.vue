@@ -10,6 +10,7 @@
                 :rules="nameRules"
                 :counter="50"
                 label="Username"
+                prepend-inner-icon="mdi-account"
                 required
               ></v-text-field>
 
@@ -20,6 +21,7 @@
                 label="Password"
                 :counter="20"
                 :rules="passwordRules"
+                prepend-inner-icon="mdi-lock"
                 required
             > </v-text-field>
 
@@ -30,32 +32,36 @@
                 label="Confirm Password"
                 :counter="20"
                 :rules="passwordRules"
+                prepend-inner-icon="mdi-lock"
                 required
             > </v-text-field>
 
             <v-text-field
-                v-model="patient.firstname"
+                v-model="patient.firstName"
                 :rules="nameRules"
                 :counter="50"
                 label="First name"
+                prepend-inner-icon="mdi-rename"
                 required
               ></v-text-field>
 
 
 
             <v-text-field
-              v-model="patient.lastname"
+              v-model="patient.lastName"
               :rules="nameRules"
               :counter="50"
               label="Last name"
+              prepend-inner-icon="mdi-rename"
               required
             ></v-text-field>
 
             <v-text-field
-              v-model="patient.email_address"
+              v-model="patient.emailAddress"
               :rules="emailRules"
               :counter="50"
               label="E-mail"
+              prepend-inner-icon="mdi-email"
               required
             ></v-text-field>
 
@@ -64,6 +70,7 @@
               :rules="nameRules"
               :counter="100"
               label="Address"
+              prepend-inner-icon="mdi-map-marker"
               required
             ></v-text-field>
 
@@ -72,14 +79,16 @@
               :rules="nameRules"
               :counter="50"
               label="City"
+              prepend-inner-icon="mdi-city"
               required
             ></v-text-field>
 
             <v-text-field
-              v-model="patient.state"
+              v-model="patient.states"
               :rules="nameRules"
               :counter="50"
               label="State"
+              prepend-inner-icon="mdi-map-marker"
               required
             ></v-text-field>
 
@@ -88,14 +97,16 @@
               :rules="nameRules"
               :counter="50"
               label="Zipcode"
+              prepend-inner-icon="mdi-map-marker"
               required
             ></v-text-field>
 
             <v-text-field
-              v-model="patient.phonenumber"
+              v-model="patient.patientNumber"
               :rules="nameRules"
               :counter="50"
               label="Phone Number"
+              prepend-inner-icon="mdi-phone"
               required
             ></v-text-field>
 
@@ -104,6 +115,7 @@
               :rules="nameRules"
               :counter="100"
               label="Birth date"
+              prepend-inner-icon="mdi-cake"
               required
             ></v-text-field>
 
@@ -124,6 +136,7 @@
 
 <script>
 import authService from '../services/AuthService';
+import patientService from '../services/PatientService'
 
   export default {
     name: "RegisterForm",
@@ -135,14 +148,14 @@ import authService from '../services/AuthService';
             role: 'user',
         },
         patient: {
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             address: '',
             city: '',
             states: '',
             zipcode: '',
-            email_address: '',
-            phonenumber: '',
+            emailAddress: '',
+            patientNumber: '',
             birthdate: '',
         },
         registrationErrors: false,
@@ -218,7 +231,7 @@ import authService from '../services/AuthService';
         this.$refs.registerForm.reset();
     },
     registerPatient() {
-
+      patientService.create(this.patient);
     }
     }
   }
