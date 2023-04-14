@@ -13,9 +13,9 @@ public interface PatientDao {
 
     int findPatientIdByPatientLastName (String patientLastName);
 
-    boolean create(Patient patient);
+    void create(Patient patient);
 
-    boolean deletePatientById(int patientId);
+    void deletePatientById(int patientId);
 
     void updatePatient (int patientId, Patient patient);
 }

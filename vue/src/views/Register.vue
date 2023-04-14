@@ -2,7 +2,7 @@
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="register" class="text-center">
-          <v-form id="registerForm" v-model="valid" @submit.prevent="register(); registerPatient();">
+          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register(); registerPatient();">
 
             <v-text-field
                 id="username"
@@ -111,7 +111,7 @@
             <v-btn type="submit" :disabled="!valid">Create Account</v-btn>
 
     
-            <v-btn @click:clear="clearInput">
+            <v-btn @click="clearInput">
               Clear Fields
             </v-btn>
 
@@ -215,7 +215,7 @@ import authService from '../services/AuthService';
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
     clearInput() {
-        document.getElementById("registerForm").reset();
+        this.$refs.registerForm.reset();
     },
     registerPatient() {
 

@@ -64,34 +64,28 @@ public class JdbcDoctorDao implements DoctorDao{
         return doctorId;
         }
 
-    public boolean create(Doctor doctor) {
+    @Override
+    public void create(Doctor doctor) {
         String sql = "INSERT INTO doctor (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?);" ;
-        if (jdbcTemplate.update(sql, doctor.getDoctorId()) == 1) {
-            System.out.println("New doctor created");
-        } else {
-            throw new RuntimeException("Failed to create new doctor");
+        jdbcTemplate.update(sql, doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getDate(), doctor.getStartTime(),doctor.getEndTime());
+
         }
-        return true;
-    }
+
 
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
         String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
                 "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time=? WHERE doctor_id = ?;";
-        jdbcTemplate.update(sql,doctor, doctorId);
+        jdbcTemplate.update(sql,doctor.getDoctorId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
+                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getDate(),doctor.getStartTime(),doctor.getEndTime());
 
     }
 
     @Override
-    public boolean deleteDoctorById(int doctorId) {
+    public void deleteDoctorById(int doctorId) {
         String deleteDoctorById = "delete from doctor where doctor_id = ?";
-        if (jdbcTemplate.update(deleteDoctorById, doctorId)==1) {
-            System.out.println("Doctor is deleted successfully");}
-        else{
-            throw new RuntimeException("Failed to delete doctor");
-            }
-        return true;
+        jdbcTemplate.update(deleteDoctorById, doctorId);
         }
 
      @Override

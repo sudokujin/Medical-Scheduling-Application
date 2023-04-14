@@ -1,12 +1,9 @@
 <template>
   <v-container>
     <v-layout>
-      <doctor-list v-if="getRolePatient"  />
+      <admin-view v-if="getRoleAdmin" />
       <patient-list v-else-if="getRoleDoctor" />
-    </v-layout>
-    <v-layout v-if="getRoleAdmin">
-      <doctor-list />
-      <patient-list />
+      <doctor-list v-else />
     </v-layout>
   </v-container>
 </template>
@@ -14,12 +11,14 @@
 <script>
 import DoctorList from '../components/DoctorList.vue'
 import PatientList from '../components/PatientList.vue'
+import AdminView from'../components/AdminView.vue'
 
 export default {
   name: 'home',
   components: {
     DoctorList,
     PatientList,
+    AdminView
   },
   computed: {
     getRoleAdmin() {
