@@ -1,28 +1,54 @@
 -- STEP 3
 BEGIN TRANSACTION;
 
+-- users
 INSERT INTO users (username,password_hash,role) 
 VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
 INSERT INTO users (username,password_hash,role) 
 VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
-INSERT INTO doctor
-(first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
-VALUES('Qing','Jin','Dermontology',3, 3000,'2023/10/08' , '8:00:00', '5:00:00');
-INSERT INTO doctor
-(first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
-VALUES('Jordan','Bruntz','Bones',4, 4000, '2023/10/08', '8:00:00', '5:00:00');
-INSERT INTO doctor
-(first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
-VALUES('Dom','Lorenz','Heart Surgeon', 5, 6000, '2023/10/10', '8:00:00', '5:00:00');
-INSERT INTO doctor
-(first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
-VALUES('Salaj','Choudhary','Brain doctor', 6, 8000, '2023/10/09', '8:00:00', '5:00:00');
-INSERT INTO doctor
-(first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time)
-VALUES('Youngjin','Kwon','Psychologist', 7, 9000, '2023/10/09', '8:00:00', '5:00:00');
+INSERT INTO users (username,password_hash,role) 
+VALUES ('qing','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
 
+INSERT INTO users (username,password_hash,role) 
+VALUES ('Jordan','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
+
+INSERT INTO users (username,password_hash,role) 
+VALUES ('Salaj','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
+
+INSERT INTO users (username,password_hash,role) 
+VALUES ('DomTheFrontEndPro','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
+
+INSERT INTO users (username,password_hash,role) 
+VALUES ('JordanTheHappyBoi','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
+
+INSERT INTO users (username,password_hash,role) 
+VALUES ('YoungjinLovesCake','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_DOCTOR');
+
+--- doctors
+INSERT INTO doctor
+(user_id, first_name,last_name,specialty,suite_number, costperhour)
+VALUES(3, 'Qing','Jin','Dermontology',3, 3000);
+
+INSERT INTO doctor
+(user_id, first_name,last_name,specialty,suite_number, costperhour)
+VALUES(4, 'Jordan','Bruntz','Bones',4, 4000);
+
+INSERT INTO doctor
+(user_id, first_name,last_name,specialty,suite_number, costperhour)
+VALUES(6, 'Dom','Lorenz','Heart Surgeon', 5, 6000);
+
+INSERT INTO doctor
+(user_id, first_name,last_name,specialty,suite_number, costperhour)
+VALUES(5, 'Salaj','Choudhary','Brain doctor', 6, 8000);
+
+INSERT INTO doctor
+(user_id, first_name,last_name,specialty,suite_number, costperhour)
+VALUES(8, 'Youngjin','Kwon','Psychologist', 7, 9000);
+
+
+-- patients
 INSERT INTO patient(
 	first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
 	VALUES ('Pan', 'Bam', 'Panda Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/09');

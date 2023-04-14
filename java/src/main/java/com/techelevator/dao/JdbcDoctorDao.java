@@ -66,19 +66,19 @@ public class JdbcDoctorDao implements DoctorDao{
 
     @Override
     public void create(Doctor doctor) {
-        String sql = "INSERT INTO doctor (first_name,last_name,specialty,suite_number, costperhour, appt_date, start_time, end_time) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);" ;
-        jdbcTemplate.update(sql, doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getDate(), doctor.getStartTime(),doctor.getEndTime());
+        String sql = "INSERT INTO doctor (user_id, first_name,last_name,specialty,suite_number, costperhour) " +
+                "VALUES (?, ?, ?, ?, ?, ?);" ;
+        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour());
 
         }
 
 
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
-        String sql = "UPDATE doctor SET first_name=?,last_name,specialty=?," +
-                "suite_number=?, costperhour=?, appt_date=?, start_time=?, end_time=? WHERE doctor_id = ?;";
-        jdbcTemplate.update(sql,doctor.getDoctorId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
-                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getDate(),doctor.getStartTime(),doctor.getEndTime());
+        String sql = "UPDATE doctor SET user_id=?, first_name=?,last_name,specialty=?," +
+                "suite_number=?, costperhour=? WHERE doctor_id = ?;";
+        jdbcTemplate.update(sql,doctor.getDoctorId(),doctor.getUserId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
+                doctor.getSuiteNumber(), doctor.getCostPerHour());
 
     }
 
@@ -88,31 +88,29 @@ public class JdbcDoctorDao implements DoctorDao{
         jdbcTemplate.update(deleteDoctorById, doctorId);
         }
 
-     @Override
-     public boolean isDoctor(){
-        String sql = "select * from doctor join doctor_users on doctor.doctor_id = doctor_users.doctor_id \n" +
-                "join users on users.user_id = doctor_users.user_id\n" +
-                "where role ='doctor';";
-         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-
-         if(result.next()){
-             return true;
-         }
-         return false;
-
-     }
+//     @Override
+//     public boolean isDoctor(){
+//        String sql = "select * from doctor join doctor_users on doctor.doctor_id = doctor_users.doctor_id \n" +
+//                "join users on users.user_id = doctor_users.user_id\n" +
+//                "where role ='doctor';";
+//         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+//
+//         if(result.next()){
+//             return true;
+//         }
+//         return false;
+//
+//     }
 
     private Doctor mapRowToDoctor(SqlRowSet results) {
         Doctor doctor = new Doctor();
         doctor.setDoctorId(results.getInt("doctor_id"));
+        doctor.setUserId(results.getInt("user_id"));
         doctor.setFirstName(results.getString("first_name"));
         doctor.setLastName(results.getString("last_name"));
         doctor.setSpecialty(results.getString("specialty"));
         doctor.setSuiteNumber(results.getInt("suite_number"));
         doctor.setCostPerHour(results.getInt("costperhour"));
-        doctor.setDate(results.getDate("appt_date"));
-        doctor.setStartTime(results.getTime("start_time"));
-        doctor.setEndTime(results.getTime("end_time"));
         return doctor;
 
     }

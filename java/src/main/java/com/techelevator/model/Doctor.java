@@ -9,6 +9,8 @@ public class Doctor {
     @NotBlank
     private int doctorId;
     @NotBlank
+    private int userId;
+    @NotBlank
     private String firstName;
     @NotBlank
     private String lastName;
@@ -68,6 +70,15 @@ public class Doctor {
 
     public Doctor() {
     }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
     @Override
     public String toString() {
