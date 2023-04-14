@@ -5,7 +5,7 @@
         Doctors
       </div>
       <v-data-table
-        :items="doctors"
+        :items="this.$store.state.doctors"
         :headers="headers"
         >
       </v-data-table>
@@ -29,15 +29,21 @@ export default {
       ]
     }
   },
+  methods: {
+    getDoctors() {
+      doctorService.getAllDoctors().then(response => {
+        this.$store.commit("SET_DOCTORS", response.data);
+      });
+    }
+  },
   data() {
     return {
       doctors: [],  
     }
   },
   created() {
-      doctorService.getAllDoctors().then(response => {
-      this.doctors = response.data;
-    })
+      this.getDoctors();
+      console.log(this.$store.state.doctors);
   }
 };
 </script>

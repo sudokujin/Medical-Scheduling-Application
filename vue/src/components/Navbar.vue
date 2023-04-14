@@ -23,7 +23,9 @@
                 dense
                 nav
             >
-            <v-list-item>link 1</v-list-item>
+            <v-list-item>
+                <router-link v-bind:to="{ name: 'calendar' }">Calendar</router-link>&nbsp;|&nbsp;
+            </v-list-item>
             <v-list-item>link 2</v-list-item>
             <v-list-item>link 3</v-list-item>
             <v-list-item>link 4</v-list-item>

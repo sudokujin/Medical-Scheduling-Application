@@ -33,7 +33,7 @@ export default {
     }
   },
   created() {
-    console.log(this.$store.state.user.authorities[0].name);
+    console.log(this.$store.state.user.authorities[0].name)
   }
 }
 </script>

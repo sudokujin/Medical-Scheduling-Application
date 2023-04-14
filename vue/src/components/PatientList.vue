@@ -34,7 +34,7 @@ export default {
     }
   },
   created() {
-      patientService.list().then(response => {
+      patientService.getPatientList().then(response => {
       this.doctors = response.data;
     })
   }
