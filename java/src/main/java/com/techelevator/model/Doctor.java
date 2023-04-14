@@ -15,34 +15,6 @@ public class Doctor {
     private String specialty;
     private int suiteNumber;
     private int costPerHour;
-    private Date apptDate;
-    private Time startTime;
-    private Time endTime;
-
-    public Date getDate() {
-        return apptDate;
-    }
-
-    public void setDate(Date date) {
-        this.apptDate = date;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
-
 
     public int getDoctorId() {
         return doctorId;
@@ -106,9 +78,6 @@ public class Doctor {
                 ", specialty='" + specialty + '\'' +
                 ", suiteNumber=" + suiteNumber +
                 ", costPerHour=" + costPerHour +
-                ", apptDate=" + apptDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
                 '}';
     }
 }

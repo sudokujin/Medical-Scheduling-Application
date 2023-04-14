@@ -3,21 +3,20 @@ package com.techelevator.model;
 import java.sql.Time;
 import java.util.Date;
 
-public class DoctorTimeTable {
-    private int doctorTimeTableId;
+public class DoctorTime {
+    private int doctorTimeId;
     private int doctorId;
-    private Date date;
+    private Date officeDate;
     private Time start_time;
     private Time end_time;
 
-    public DoctorTimeTable() { }
-
-    public int getDoctorTimeTableId() {
-        return doctorTimeTableId;
+    public DoctorTime() { }
+    public int getDoctorTimeId() {
+        return doctorTimeId;
     }
 
-    public void setDoctorTimeTableId(int doctorTimeTableId) {
-        this.doctorTimeTableId = doctorTimeTableId;
+    public void setDoctorTimeId(int doctorTimeId) {
+        this.doctorTimeId = doctorTimeId;
     }
 
     public int getDoctorId() {
@@ -28,12 +27,12 @@ public class DoctorTimeTable {
         this.doctorId = doctorId;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOfficeDate() {
+        return officeDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOfficeDate(Date officeDate) {
+        this.officeDate = officeDate;
     }
 
     public Time getStart_time() {
@@ -51,6 +50,5 @@ public class DoctorTimeTable {
     public void setEnd_time(Time end_time) {
         this.end_time = end_time;
     }
-
 
 }
