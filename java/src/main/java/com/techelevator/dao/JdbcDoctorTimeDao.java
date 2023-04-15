@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-
-@Component
 public class JdbcDoctorTimeDao implements DoctorTimeDao{
 
     private JdbcTemplate jdbcTemplate;
