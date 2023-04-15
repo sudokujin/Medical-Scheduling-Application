@@ -59,7 +59,7 @@ public class DoctorTimeController {
         doctorTimeDao.createEndTime(doctorTime);
     }
     @PostMapping("update/startandend/{id}")
-    public void getTimeByDoctorId(@PathVariable Integer id, Time startTime, Time endTime) {
+    public void updateBothStartAndEndTimeByDoctorId(@PathVariable Integer id, Time startTime, Time endTime) {
         doctorTimeDao.changeStartTimeAndEndTimeByDoctorId(id, startTime, endTime);
     }
 
