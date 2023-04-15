@@ -87,7 +87,7 @@ INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
 	VALUES (__, 'David', 'Orlando', 'David Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/11');	
 ----------------------------------------------------------------------------------------------------------------------------
--- review CHANGE USER_ID ACCODRINGLY some FK constrains going on again fuck!!!
+-- review
 INSERT INTO review(
 	review_title, review_body, review_rating, review_date, doctor_id, patient_id)
 	VALUES ('Qing is the BEST doctor ever!', 'I LOVE HER!!!', 10, '2023/09/08', __, __);
