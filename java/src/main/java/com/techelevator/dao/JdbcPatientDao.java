@@ -66,9 +66,9 @@ public class JdbcPatientDao implements PatientDao{
 
     @Override
     public void create(Patient patient) {
-        String sql = "INSERT INTO patient(first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
-        jdbcTemplate.update(sql, patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getCity(), patient.getStates(), patient.getZipcode(), patient.getEmailAddress(), patient.getPatientNumber(), patient.getBirthdate());
+        String sql = "INSERT INTO patient(user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
+        jdbcTemplate.update(sql, patient.getUserId(), patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getCity(), patient.getStates(), patient.getZipcode(), patient.getEmailAddress(), patient.getPatientNumber(), patient.getBirthdate());
 
     }
 
@@ -91,6 +91,7 @@ public class JdbcPatientDao implements PatientDao{
     private Patient mapRowToPatient(SqlRowSet results) {
         Patient patient = new Patient();
         patient.setPatientId(results.getInt("patient_id"));
+        patient.setUserId(results.getInt("user_id"));
         patient.setFirstName(results.getString("first_name"));
         patient.setLastName(results.getString("last_name"));
         patient.setAddress(results.getString("address"));

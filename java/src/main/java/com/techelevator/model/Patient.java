@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Patient {
-//NEED TO ADD userId!!!
     private int patientId;
+
+    private int userId;
     private String firstName;
     private String lastName;
     private String address;
@@ -94,6 +95,14 @@ public class Patient {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Patient() {
