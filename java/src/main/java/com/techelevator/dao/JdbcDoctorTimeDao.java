@@ -69,17 +69,57 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
         return startTime;
     }
 
-//    @Override
-//    public DoctorTime getStartTimeByDoctorId(int doctorId) {
-//        DoctorTime startTime = null;
-//        String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
-//
-//        if(results.next()){
-//            startTime = mapRowToDoctorTime(results);
-//        }
-//        return startTime;
-//    }
+    @Override
+    public DoctorTime getEndTimeByDoctorId(int doctorId) {
+        DoctorTime endTime = null;
+        String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+
+        if(results.next()){
+            endTime = mapRowToDoctorTime(results);
+        }
+        return endTime;
+    }
+
+    @Override
+    public void createStartTime(DoctorTime doctorTime) {
+        String sql = "INSERT INTO doctor_time(doctor_id, office_date, start_time, end_time) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(sql, doctorTime.getDoctorId(), doctorTime.getOfficeDate(), doctorTime.getStart_time(), doctorTime.getEnd_time());
+    }
+
+
+    @Override
+    public void updateStartTime(int doctorTimeId, DoctorTime doctorTime) {
+        String sql = "UPDATE doctor_time SET doctor_time_id=?, doctor_id=?, office_date=?, start_time=?, end_time=? WHERE doctor_time_id=?;";
+        jdbcTemplate.update(sql,doctorTime, doctorTimeId);
+
+    }
+
+    @Override
+    public void deleteStartTime(int doctorTimeId) {
+        String sql = "DELETE FROM doctor_time WHERE doctor_time_id=?;";
+        jdbcTemplate.update(sql,doctorTimeId);
+    }
+
+    @Override
+    public void createEndTime(DoctorTime doctorTime) {
+        String sql = "INSERT INTO doctor_time(doctor_id, office_date, start_time, end_time) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(sql, doctorTime.getDoctorId(), doctorTime.getOfficeDate(), doctorTime.getStart_time(), doctorTime.getEnd_time());
+    }
+
+
+    @Override
+    public void updateEndTime(int doctorTimeId, DoctorTime doctorTime) {
+        String sql = "UPDATE doctor_time SET doctor_time_id=?, doctor_id=?, office_date=?, start_time=?, end_time=? WHERE doctor_time_id=?;";
+        jdbcTemplate.update(sql,doctorTime, doctorTimeId);
+
+    }
+
+    @Override
+    public void deleteEndTime(int doctorTimeId) {
+        String sql = "DELETE FROM doctor_time WHERE doctor_time_id=?;";
+        jdbcTemplate.update(sql,doctorTimeId);
+    }
 
 
 
