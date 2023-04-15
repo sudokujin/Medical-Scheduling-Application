@@ -1,5 +1,7 @@
 <template>
    <v-container>
+     <navbar />
+     <v-divider></v-divider>
        <h1> Weekly Calendar </h1>
        <v-spacer></v-spacer>
         <v-sheet
@@ -17,6 +19,7 @@
         <v-select
           v-model="doctors"
           :items="doctors"
+          item-text="firstName"
           dense
           outlined
           hide-details
@@ -45,39 +48,41 @@
         <v-btn
           icon
           class="ma-2"
-          @click="insertSomethingHere"
+          @click="$refs.calendar.next()"
         >
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </v-sheet>
       <v-sheet>
-        <v-calendar-weekly
+        <v-calendar
             ref="calendar"
-            :weekdays="weekday"
-        >
-            
-        </v-calendar-weekly>
+            :now="today"
+            :value="today"
+            :events="events"
+            color="primary"
+            type="week"
+            :start="today"
+          ></v-calendar>
       </v-sheet>
    </v-container>
     
 </template>
 <script>
-
+import Navbar from '../components/Navbar.vue'
 
 export default {
     name: 'calendar',
+    components: {
+      Navbar
+    },
     data() {
         return {
-            type: 'week',
             mode: 'stack',
             modes: ['stack', 'column'],
-            weekday: [1, 2, 3, 4, 5],
-            selectedDate: new Date(),
+            weekday: [0, 1, 2, 3, 4, 5, 6],
             timeSlots: [],
-            doctor: '',
-            doctors: ['Dom', 'Salaj', 'Youngjin'],
-            startTime: 0,
-            endTime: 0
+            today: new Date()
+            
         }
     },
     methods: {
@@ -92,17 +97,21 @@ export default {
             this.startTime = this.doc.startTime;
             this.endTime = this.doc.endTime;
             
-        },
-        getDocName() {
-          for (let i = 0; i < this.$store.state.doctors.length; i++) {
-            console.log(this.doctors[i].firstName);
-          }
         }
     },
+    computed: {
+      getNames() {
+        let arr = [];
+        for (let i = 0; i < this.doctors.length; i++) {
+          arr.push(this.doctors[i].firstName);
+        }return arr = this.doctorNames;
+      }
+    },
     created() {
+        this.doctors = this.$store.state.doctors
         console.log(this.doctors);
-        console.log('hello');
-        console.log(this.getDocName());
+        console.log(this.doctorNames);
+        
     }
     
 }
