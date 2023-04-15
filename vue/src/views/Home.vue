@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <navbar />
     <v-layout>
       <admin-view v-if="getRoleAdmin" />
       <patient-list v-else-if="getRoleDoctor" />
@@ -12,13 +13,15 @@
 import DoctorList from '../components/DoctorList.vue'
 import PatientList from '../components/PatientList.vue'
 import AdminView from'../components/AdminView.vue'
+import Navbar from '../components/Navbar.vue'
 
 export default {
   name: 'home',
   components: {
     DoctorList,
     PatientList,
-    AdminView
+    AdminView,
+    Navbar
   },
   computed: {
     getRoleAdmin() {

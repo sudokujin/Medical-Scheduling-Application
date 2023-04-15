@@ -33,6 +33,8 @@ export default {
     getDoctors() {
       doctorService.getAllDoctors().then(response => {
         this.$store.commit("SET_DOCTORS", response.data);
+        // console.log(response.data);
+        // console.log(this.$store.state.doctors);
       });
     }
   },
@@ -43,7 +45,6 @@ export default {
   },
   created() {
       this.getDoctors();
-      console.log(this.$store.state.doctors);
   }
 };
 </script>
