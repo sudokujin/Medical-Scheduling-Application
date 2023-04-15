@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -81,10 +82,12 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
         return endTime;
     }
 
-    @Override
-    public void createStartTime(DoctorTime doctorTime) {
-        String sql = "INSERT INTO doctor_time(doctor_id, office_date, start_time, end_time) VALUES (?, ?, ?, ?);";
-        jdbcTemplate.update(sql, doctorTime.getDoctorId(), doctorTime.getOfficeDate(), doctorTime.getStart_time(), doctorTime.getEnd_time());
+    @Override                                          //int or Time? ..I think should be time
+    public void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime) {
+        String sql = "UPDATE public.doctor_time\n" +
+                "\tSET start_time=?, end_time=?\n" +
+                "\tWHERE doctor_id=?;";
+        jdbcTemplate.update(sql, doctorId, startTime);
     }
 
 

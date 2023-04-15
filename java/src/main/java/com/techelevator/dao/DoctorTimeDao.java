@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Doctor;
 import com.techelevator.model.DoctorTime;
 
+import java.sql.Time;
 import java.util.List;
 
 public interface DoctorTimeDao {
@@ -18,7 +19,7 @@ public interface DoctorTimeDao {
 
     DoctorTime getEndTimeByDoctorId (int doctorId);
 
-    void createStartTime(DoctorTime doctorTime);
+    void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime);
 
     void updateStartTime(int doctorTimeId, DoctorTime doctorTime);
 
