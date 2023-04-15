@@ -82,22 +82,9 @@ export default {
             mode: 'stack',
             modes: ['stack', 'column'],
             weekday: [0, 1, 2, 3, 4, 5, 6],
-            timeSlots: [
-              {
-                doctorTimeId: 1,
-                doctorId: 1,
-                officeDate: "2023-12-12",
-                startTime: "08:00:00",
-                endTime: "12:00:00",
-            }
-            ],
+            timeSlots: [],
             timeSlotByDoctor: [],
-            today: new Date(),
-            testTime: {
-              time: "08:00:00",
-            },
-            timeObj: {},
-            
+            today: new Date(),  
         }
     },
     methods: {
@@ -105,15 +92,12 @@ export default {
           doctorTimeService.getAllTimeSlots().then(response => {
           this.$store.commit("SET_TIMESLOTS", response.data);
         });
-      },
-      getTimeForDoc() {
-        this.timeObj.hour = this.testTime.time.slice(0, 2);
-        this.timeObj.minutes = this.testTime.time.slice(3, 5);
-        this.timeObj.seconds = this.testTime.time.slice(7);
       }
     },
     computed: {
-      
+      getTimeForDoc() {
+      return null;
+      }
       // loop over timeslots object to acces start time and end time
         // push first time into timeSlotByDoctor
         // each loop, increment minutes by 30
@@ -121,9 +105,10 @@ export default {
         // concat values back into time format, push into timeSlotByDoctor each iteration
     },
     created() {
+        this.getTimeSlots();
         this.doctors = this.$store.state.doctors;
         this.timeSlots = this.$store.state.timeSlots;
-        console.log('test', this.timeObj.hour);
+        console.log('test', this.timeSlots);
         console.log(this.doctorNames);
     }
 }

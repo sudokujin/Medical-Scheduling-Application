@@ -8,6 +8,9 @@
         :items="this.$store.state.doctors"
         :headers="headers"
         >
+        <template v-slot:[`item.action`]="{item}">
+          <v-btn @click="getItem(item)">Schedule Appointment</v-btn>
+        </template>
       </v-data-table>
     
   </v-app>
@@ -26,6 +29,7 @@ export default {
         {text: 'Specialty', value: 'specialty'},
         {text: 'Suite', value: 'suiteNumber'},
         {text: 'Cost Per Hour', value: 'costPerHour'},
+        {text: 'Schedule Appointment', value: 'action'}
       ]
     }
   },
@@ -34,11 +38,15 @@ export default {
       doctorService.getAllDoctors().then(response => {
         this.$store.commit("SET_DOCTORS", response.data);
       });
+    },
+    getItem() {
+      this.item = 'hello';
     }
   },
   data() {
     return {
       doctors: [],  
+      item: 'hello'
     }
   },
   created() {
