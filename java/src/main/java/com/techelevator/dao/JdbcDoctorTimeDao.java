@@ -2,7 +2,6 @@ package com.techelevator.dao;
 
 
 
-import com.techelevator.model.Appointment;
 import com.techelevator.model.DoctorTime;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -32,6 +31,23 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
             doctorTime = mapRowToDoctorTime(results);
         }
         return doctorTime;
+    }
+
+    @Override
+    public List<DoctorTime> getAllDoctorTime() {
+        List<DoctorTime> doctorTimes = new ArrayList<>();
+        String sql = "SELECT * FROM doctor_time";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        try {
+            while (results.next()) {
+                doctorTimes.add(mapRowToDoctorTime(results));
+            }
+        }   catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+            throw new RuntimeException("No time schedules found found");
+        }
+
+        return doctorTimes;
+
     }
 
     @Override
@@ -88,6 +104,12 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
                 "\tSET start_time=?, end_time=?\n" +
                 "\tWHERE doctor_id=?;";
         jdbcTemplate.update(sql, doctorId, startTime);
+    }
+
+    @Override
+    public void createStartTime(DoctorTime doctorTime) {
+        String sql = "INSERT INTO doctor_time(doctor_id, office_date, start_time, end_time) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(sql, doctorTime.getDoctorId(), doctorTime.getOfficeDate(), doctorTime.getStart_time(), doctorTime.getEnd_time());
     }
 
 
