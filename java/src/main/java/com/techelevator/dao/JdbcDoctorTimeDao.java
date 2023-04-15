@@ -8,10 +8,12 @@ import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcDoctorTimeDao implements DoctorTimeDao{
 
     private JdbcTemplate jdbcTemplate;
@@ -43,6 +45,44 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
         }
         return doctorTime;
     }
+
+    @Override
+    public DoctorTime getOfficeDateByDoctorId(int doctorId) {
+        DoctorTime officeDate = null;
+        String sql = "SELECT office_date FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+
+        if(results.next()){
+            officeDate = mapRowToDoctorTime(results);
+        }
+        return officeDate;
+    }
+
+    @Override
+    public DoctorTime getStartTimeByDoctorId(int doctorId) {
+        DoctorTime startTime = null;
+        String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+
+        if(results.next()){
+            startTime = mapRowToDoctorTime(results);
+        }
+        return startTime;
+    }
+
+//    @Override
+//    public DoctorTime getStartTimeByDoctorId(int doctorId) {
+//        DoctorTime startTime = null;
+//        String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+//
+//        if(results.next()){
+//            startTime = mapRowToDoctorTime(results);
+//        }
+//        return startTime;
+//    }
+
+
 
     private DoctorTime mapRowToDoctorTime(SqlRowSet results) {
         DoctorTime doctorTime = new DoctorTime();

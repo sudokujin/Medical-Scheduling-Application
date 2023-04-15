@@ -11,6 +11,12 @@ public interface DoctorTimeDao {
 
     DoctorTime getDoctorTimeByDoctorId (int doctorId);
 
+    DoctorTime getOfficeDateByDoctorId (int doctorId);
+
+    DoctorTime getStartTimeByDoctorId (int doctorId);
+
+//    DoctorTime getEndTimeByDoctorId (int doctorId);
+
 //    List<Appointment> getAppointmentsByPatientId(int patientId);
 //
 //    List<Appointment> getAppointmentsByDoctorId(int doctorId);

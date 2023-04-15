@@ -10,7 +10,9 @@ public class DoctorTime {
     private Time start_time;
     private Time end_time;
 
-    public DoctorTime() { }
+    public DoctorTime() {
+
+    }
     public int getDoctorTimeId() {
         return doctorTimeId;
     }
