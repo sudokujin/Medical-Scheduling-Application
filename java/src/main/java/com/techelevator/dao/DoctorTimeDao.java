@@ -1,4 +1,23 @@
 package com.techelevator.dao;
 
-public class DoctorTimeDao {
+import com.techelevator.model.DoctorTime;
+
+import java.util.List;
+
+public interface DoctorTimeDao {
+
+
+    DoctorTime getDoctorTimeByTimeId (int doctorTimeId);
+
+    DoctorTime getDoctorTimeByDoctorId (int doctorId);
+
+//    List<Appointment> getAppointmentsByPatientId(int patientId);
+//
+//    List<Appointment> getAppointmentsByDoctorId(int doctorId);
+//
+//    void createAppointment(Appointment appointment);
+//
+//    void updateAppointment(int appointmentId, Appointment appointment);
+//
+//    void deleteAppointment(int appointmentId);
 }
