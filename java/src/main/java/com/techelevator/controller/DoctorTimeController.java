@@ -3,10 +3,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.DoctorTimeDao;
 import com.techelevator.model.DoctorTime;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RequestMapping("/time")
@@ -19,7 +16,7 @@ public class DoctorTimeController {
 
 
     @GetMapping("/{id}")
-    public DoctorTime getTimeByDoctorId (Integer id) {
+    public DoctorTime getTimeByDoctorId (@PathVariable Integer id) {
         return doctorTimeDao.getDoctorTimeByDoctorId(id);
     }
 }
