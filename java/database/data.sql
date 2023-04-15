@@ -31,23 +31,23 @@ VALUES ('YoungjinLovesCake','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft
 -- doctors CHANGE USER_ID ACCODRINGLY 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour)
-VALUES(3, 'Qing','Jin','Dermontology',3, 3000);
+VALUES(__, 'Qing','Jin','Dermontology',3, 3000);
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour)
-VALUES(4, 'Jordan','Bruntz','Bones',4, 4000);
+VALUES(__, 'Jordan','Bruntz','Bones',4, 4000);
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour)
-VALUES(6, 'Dom','Lorenz','Heart Surgeon', 5, 6000);
+VALUES(__, 'Dom','Lorenz','Heart Surgeon', 5, 6000);
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour)
-VALUES(5, 'Salaj','Choudhary','Brain doctor', 6, 8000);
+VALUES(__, 'Salaj','Choudhary','Brain doctor', 6, 8000);
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour)
-VALUES(8, 'Youngjin','Kwon','Psychologist', 7, 9000);
+VALUES(__, 'Youngjin','Kwon','Psychologist', 7, 9000);
 -------------------------------------------------------------------------------------------------------
 
 -- patient/user RUN THIS FIRST
@@ -70,31 +70,31 @@ VALUES ('David', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC',
 
 INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
-	VALUES (19, 'Anthony', 'Orlando', 'Anthony Land', 'Philly', 'Japan', '33333', 'ann@gmail', '3333333000', '2023/09/12');
+	VALUES (__, 'Anthony', 'Orlando', 'Anthony Land', 'Philly', 'Japan', '33333', 'ann@gmail', '3333333000', '2023/09/12');
 
 INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
-	VALUES (20, 'Max', 'Orlando', 'Max Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/09');
+	VALUES (__, 'Max', 'Orlando', 'Max Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/09');
 INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
-	VALUES (21, 'Jordan', 'Orlando', 'Jordan Land', 'Tokyo', 'Japan', '3333999', 'pan@gmail', '3333333000', '2023/09/08');
+	VALUES (__, 'Jordan', 'Orlando', 'Jordan Land', 'Tokyo', 'Japan', '3333999', 'pan@gmail', '3333333000', '2023/09/08');
 	
 INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
-	VALUES (22, 'Qing', 'Orlando', 'Panda Land', 'Tokyo', 'Japan', '3334477', 'pan@gmail', '3333333000', '2023/09/10');
+	VALUES (__, 'Qing', 'Orlando', 'Panda Land', 'Tokyo', 'Japan', '3334477', 'pan@gmail', '3333333000', '2023/09/10');
 		
 INSERT INTO patient(
 	user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)
-	VALUES (23, 'David', 'Orlando', 'David Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/11');	
+	VALUES (__, 'David', 'Orlando', 'David Land', 'Tokyo', 'Japan', '33333', 'pan@gmail', '3333333000', '2023/09/11');	
 ----------------------------------------------------------------------------------------------------------------------------
 -- review CHANGE USER_ID ACCODRINGLY some FK constrains going on again fuck!!!
 INSERT INTO review(
 	review_title, review_body, review_rating, review_date, doctor_id, patient_id)
-	VALUES ('Qing is the BEST doctor ever!', 'I LOVE HER!!!', 10, '2023/09/08', 3, 12);
+	VALUES ('Qing is the BEST doctor ever!', 'I LOVE HER!!!', 10, '2023/09/08', __, __);
 	
 -- appointment	
 INSERT INTO appointment(
 	patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
-	VALUES (1, 3, 30, 'brain fog', '2023/08/08', '8:00:00');
+	VALUES (__, __, __, 'brain fog', '2023/08/08', '8:00:00');
 	
 COMMIT TRANSACTION;
