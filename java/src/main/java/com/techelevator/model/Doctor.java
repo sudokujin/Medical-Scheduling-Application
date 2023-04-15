@@ -9,40 +9,14 @@ public class Doctor {
     @NotBlank
     private int doctorId;
     @NotBlank
+    private int userId;
+    @NotBlank
     private String firstName;
     @NotBlank
     private String lastName;
     private String specialty;
     private int suiteNumber;
     private int costPerHour;
-    private Date apptDate;
-    private Time startTime;
-    private Time endTime;
-
-    public Date getDate() {
-        return apptDate;
-    }
-
-    public void setDate(Date date) {
-        this.apptDate = date;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
-
 
     public int getDoctorId() {
         return doctorId;
@@ -97,6 +71,15 @@ public class Doctor {
     public Doctor() {
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+
     @Override
     public String toString() {
         return "Doctor{" +
@@ -106,9 +89,6 @@ public class Doctor {
                 ", specialty='" + specialty + '\'' +
                 ", suiteNumber=" + suiteNumber +
                 ", costPerHour=" + costPerHour +
-                ", apptDate=" + apptDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
                 '}';
     }
 }

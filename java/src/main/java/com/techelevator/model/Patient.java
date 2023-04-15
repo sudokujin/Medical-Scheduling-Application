@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Patient {
-
+//NEED TO ADD userId!!!
     private int patientId;
     private String firstName;
     private String lastName;
