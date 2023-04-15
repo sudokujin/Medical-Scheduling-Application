@@ -94,7 +94,7 @@
 
             <v-text-field
               v-model="patient.zipcode"
-              :rules="nameRules"
+              :rules="zipcodeRules"
               :counter="50"
               label="Zipcode"
               prepend-inner-icon="mdi-map-marker"
@@ -103,7 +103,7 @@
 
             <v-text-field
               v-model="patient.patientNumber"
-              :rules="nameRules"
+              :rules="phoneNumberRules"
               :counter="50"
               label="Phone Number"
               prepend-inner-icon="mdi-phone"
@@ -192,10 +192,34 @@ import patientService from '../services/PatientService'
           return 'Password is required.'
         },
         value => {
-          if (value?.length >= 8 && value?.length <= 20) return true
+          if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$^&*()_-]).{8,20}$/.test(value) && value?.length >= 8 && value?.length <= 20) return true
 
-          return 'Password must be at least between 8  and 20 characters.'
+          return 'Password must be at least between 8 and 20 characters, have one digit, one lower case, one upper case, and one special character.'
         },
+      ],
+      zipcodeRules: [
+        value => {
+          if (value) return true
+
+          return 'Zipcode is required.'
+        },
+        value => {
+          if (/^\d{5}$|^\d{5}-\d{4}$/.test(value)) return true;
+
+          return 'Zipcode must be at least 5 numbers.'
+        }
+      ],
+      phoneNumberRules: [
+        value => {
+          if (value) return true
+
+          return 'Phone number is required.'
+        },
+        value => {
+          if (/^[2-9]\d{2}-\d{3}-\d{4}$/.test(value)) return true;
+
+          return 'Phone number must be in the format 333-444-5555.'
+        }
       ]
     }),
     methods: {

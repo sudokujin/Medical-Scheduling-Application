@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/reviews")
 @RestController
 @CrossOrigin
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 public class ReviewController {
     private final ReviewDao reviewDao;
 
