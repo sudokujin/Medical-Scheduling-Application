@@ -38,6 +38,7 @@
         <v-select
           v-model="timeslots"
           :items="times"
+          item-text="startTime"
           dense
           outlined
           hide-details
@@ -69,6 +70,7 @@
 </template>
 <script>
 import Navbar from '../components/Navbar.vue'
+import doctorTimeService from '../services/DoctorTimeService.js'
 
 export default {
     name: 'calendar',
@@ -80,40 +82,50 @@ export default {
             mode: 'stack',
             modes: ['stack', 'column'],
             weekday: [0, 1, 2, 3, 4, 5, 6],
-            timeSlots: [],
-            today: new Date()
+            timeSlots: [
+              {
+                doctorTimeId: 1,
+                doctorId: 1,
+                officeDate: "2023-12-12",
+                startTime: "08:00:00",
+                endTime: "12:00:00",
+            }
+            ],
+            timeSlotByDoctor: [],
+            today: new Date(),
+            testTime: {
+              time: "08:00:00",
+            },
+            timeObj: {},
             
         }
     },
     methods: {
-        displayTimes() {
-            for (let i = 0; i < this.doctors; i++) {
-                if (this.doctors[i].firstName === 'Dom'){
-                    console.log(this.doctors[i]);
-                    this.doc = this.doctors[i];
-                    break;
-                }
-            }
-            this.startTime = this.doc.startTime;
-            this.endTime = this.doc.endTime;
-            
-        }
-    },
-    computed: {
-      getNames() {
-        let arr = [];
-        for (let i = 0; i < this.doctors.length; i++) {
-          arr.push(this.doctors[i].firstName);
-        }return arr = this.doctorNames;
+        getTimeSlots() {
+          doctorTimeService.getAllTimeSlots().then(response => {
+          this.$store.commit("SET_TIMESLOTS", response.data);
+        });
+      },
+      getTimeForDoc() {
+        this.timeObj.hour = this.testTime.time.slice(0, 2);
+        this.timeObj.minutes = this.testTime.time.slice(3, 5);
+        this.timeObj.seconds = this.testTime.time.slice(7);
       }
     },
+    computed: {
+      
+      // loop over timeslots object to acces start time and end time
+        // push first time into timeSlotByDoctor
+        // each loop, increment minutes by 30
+        // store start time hour and minute in object, and increment those values?
+        // concat values back into time format, push into timeSlotByDoctor each iteration
+    },
     created() {
-        this.doctors = this.$store.state.doctors
-        console.log(this.doctors);
+        this.doctors = this.$store.state.doctors;
+        this.timeSlots = this.$store.state.timeSlots;
+        console.log('test', this.timeObj.hour);
         console.log(this.doctorNames);
-        
     }
-    
 }
     
 </script>

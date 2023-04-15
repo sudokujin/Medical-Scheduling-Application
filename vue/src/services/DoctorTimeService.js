@@ -7,5 +7,8 @@ const http = axios.create({
 export default {
     getTime(id) {
         return http.get(`/time/${id}`);
+    },
+    getAllTimeSlots() {
+        return http.get(`/time`);
     }
 }

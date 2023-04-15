@@ -21,7 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     doctors: [],
-    patients: []
+    patients: [],
+    timeSlots:[]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -43,5 +44,8 @@ export default new Vuex.Store({
     SET_DOCTORS(state, data) {
       state.doctors = data;
     },
+    SET_TIMESLOTS(state, data) {
+      state.timeSlots = data;
+    }
   }
 })
