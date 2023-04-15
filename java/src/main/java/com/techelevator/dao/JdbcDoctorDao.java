@@ -84,7 +84,7 @@ public class JdbcDoctorDao implements DoctorDao{
 
     @Override
     public void deleteDoctorById(int doctorId) {
-        String deleteDoctorById = "delete from doctor where doctor_id = ?";
+        String deleteDoctorById = "delete from doctor where doctor_id = ?;";
         jdbcTemplate.update(deleteDoctorById, doctorId);
         }
 
