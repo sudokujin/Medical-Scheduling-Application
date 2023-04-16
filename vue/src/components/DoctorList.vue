@@ -40,7 +40,8 @@ export default {
       });
     },
     getItem() {
-      this.item = 'hello';
+      this.item = '';
+      this.$router.push({name: 'doctor'})
     }
   },
   data() {

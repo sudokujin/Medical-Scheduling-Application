@@ -61,7 +61,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+     {
+      path: "/doctors/:id",
+      name: "doctor",
+      component: Calendar,
+      meta: {
+        requiresAuth: false
+      }
+    },
   ]
 })
 

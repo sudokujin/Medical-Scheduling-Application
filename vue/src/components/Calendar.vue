@@ -17,14 +17,17 @@
             <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
         <v-select
-          v-model="doctors"
           :items="doctors"
+          v-model="doctorObj"
           item-text="firstName"
+          item-value="id"
+          return-object
           dense
           outlined
           hide-details
           class="ma-2"
           label="doctors"
+          @change="chosenDoctor"
         ></v-select>
         <v-select
           v-model="mode"
@@ -44,6 +47,7 @@
           hide-details
           label="timeslots"
           class="ma-2"
+          
         ></v-select>
         <v-spacer></v-spacer>
         <v-btn
@@ -57,9 +61,9 @@
       <v-sheet>
         <v-calendar
             ref="calendar"
-            :now="today"
+            
             :value="today"
-            :events="events"
+            
             color="primary"
             type="week"
             :start="today"
@@ -82,9 +86,10 @@ export default {
             mode: 'stack',
             modes: ['stack', 'column'],
             weekday: [0, 1, 2, 3, 4, 5, 6],
-            timeSlots: [],
+            timeSlots: [1, 2],
             timeSlotByDoctor: [],
             today: new Date(),  
+            selected: 0,
         }
     },
     methods: {
@@ -92,11 +97,16 @@ export default {
           doctorTimeService.getAllTimeSlots().then(response => {
           this.$store.commit("SET_TIMESLOTS", response.data);
         });
-      }
+      },
+        chosenDoctor() {
+          console.log('testtestest', this.doctorObj);
+          this.selected = this.doctorObj.doctorId;
+        },
+        
     },
     computed: {
       getTimeForDoc() {
-      return null;
+        return this.selected;
       }
       // loop over timeslots object to acces start time and end time
         // push first time into timeSlotByDoctor
@@ -108,7 +118,7 @@ export default {
         this.getTimeSlots();
         this.doctors = this.$store.state.doctors;
         this.timeSlots = this.$store.state.timeSlots;
-        console.log('test', this.timeSlots);
+        console.log('ID: ', this.selectedId);
         console.log(this.doctorNames);
     }
 }
