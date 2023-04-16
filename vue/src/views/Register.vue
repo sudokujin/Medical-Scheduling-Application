@@ -149,7 +149,7 @@ import patientService from '../services/PatientService'
         },
         patient: {
           //user.id = thisUserIdNumber
-            userId: 10,
+            userId: null,
             firstName: '',
             lastName: '',
             address: '',
