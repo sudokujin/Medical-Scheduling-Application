@@ -17,5 +17,7 @@ public interface PatientDao {
 
     void deletePatientById(int patientId);
 
+    Integer getMaxId();
+
     void updatePatient (int patientId, Patient patient);
 }

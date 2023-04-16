@@ -23,5 +23,9 @@ export default {
 
     create(patient) {
         return http.post(`/patients`, patient);
+    },
+
+    getMaxId() {
+        return http.get(`/patients/maxId`)
     }
 }

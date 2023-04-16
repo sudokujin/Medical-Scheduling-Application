@@ -25,6 +25,11 @@ public class PatientController {
         return patientDao.getPatientById(id);
     }
 
+    @GetMapping("/maxId")
+    public Integer getMaxId() {
+        return patientDao.getMaxId();
+    }
+
     @GetMapping("")
     public List<Patient> getAllPatients() {
         return patientDao.findAllPatients();

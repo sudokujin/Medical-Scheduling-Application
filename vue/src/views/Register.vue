@@ -261,6 +261,7 @@ import patientService from '../services/PatientService'
               this.registrationErrorMsg = 'Bad Request: Validation Errors';
             }
           });
+          this.patient.userId = patientService.getMaxId();
       }
     },
     clearErrors() {

@@ -1,6 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Doctor;
 import com.techelevator.model.Patient;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -70,6 +69,13 @@ public class JdbcPatientDao implements PatientDao{
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
         jdbcTemplate.update(sql, patient.getUserId(), patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getCity(), patient.getStates(), patient.getZipcode(), patient.getEmailAddress(), patient.getPatientNumber(), patient.getBirthdate());
 
+    }
+
+    @Override
+    public Integer getMaxId() {
+        String sql = "SELECT(MAX(user_id)) FROM users;";
+        Integer userId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return userId;
     }
 
     @Override
