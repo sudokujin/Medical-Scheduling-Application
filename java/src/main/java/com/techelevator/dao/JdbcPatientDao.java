@@ -67,7 +67,7 @@ public class JdbcPatientDao implements PatientDao{
     @Override
     public void create(Patient patient) {
         String sql = "INSERT INTO patient(user_id, first_name, last_name, address, city, states, zipcode, email_address, patient_number, birthdate)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
+                "VALUES ((SELECT MAX(user_id) FROM users), ?, ?, ?, ?, ?, ?, ?, ?, ?);" ;
         jdbcTemplate.update(sql, patient.getUserId(), patient.getFirstName(), patient.getLastName(), patient.getAddress(), patient.getCity(), patient.getStates(), patient.getZipcode(), patient.getEmailAddress(), patient.getPatientNumber(), patient.getBirthdate());
 
     }
