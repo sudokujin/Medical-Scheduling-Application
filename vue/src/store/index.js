@@ -44,6 +44,9 @@ export default new Vuex.Store({
     SET_DOCTORS(state, data) {
       state.doctors = data;
     },
+    SET_PATIENTS(state, data) {
+      state.patients = data;
+    },
     SET_TIMESLOTS(state, data) {
       state.timeSlots = data;
     }

@@ -2,7 +2,7 @@
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="register" class="text-center">
-          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register(); registerPatient();">
+          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register(); registerPatient(); connectIds();">
 
             <v-text-field
                 id="username"
@@ -20,7 +20,7 @@
                 v-model="user.password"
                 label="Password"
                 :counter="20"
-                :rules="passwordRules"
+                :rules="nameRules"
                 prepend-inner-icon="mdi-lock"
                 required
             > </v-text-field>
@@ -31,7 +31,7 @@
                 v-model="user.confirmPassword"
                 label="Confirm Password"
                 :counter="20"
-                :rules="passwordRules"
+                :rules="nameRules"
                 prepend-inner-icon="mdi-lock"
                 required
             > </v-text-field>
@@ -58,7 +58,7 @@
 
             <v-text-field
               v-model="patient.emailAddress"
-              :rules="emailRules"
+              :rules="nameRules"
               :counter="50"
               label="E-mail"
               prepend-inner-icon="mdi-email"
@@ -94,7 +94,7 @@
 
             <v-text-field
               v-model="patient.zipcode"
-              :rules="zipcodeRules"
+              :rules="nameRules"
               :counter="50"
               label="Zipcode"
               prepend-inner-icon="mdi-map-marker"
@@ -103,7 +103,7 @@
 
             <v-text-field
               v-model="patient.patientNumber"
-              :rules="phoneNumberRules"
+              :rules="nameRules"
               :counter="50"
               label="Phone Number"
               prepend-inner-icon="mdi-phone"
@@ -148,6 +148,8 @@ import patientService from '../services/PatientService'
             role: 'user',
         },
         patient: {
+          //user.id = thisUserIdNumber
+            userId: 10,
             firstName: '',
             lastName: '',
             address: '',
@@ -220,7 +222,21 @@ import patientService from '../services/PatientService'
 
           return 'Phone number must be in the format 333-444-5555.'
         }
-      ]
+      ],
+      dateRules: [
+            value => {
+          if (value) return true
+
+          return 'Date is required.'
+        },
+        // eslint-disable-next-line 
+        /* eslint-disable */
+        value => {
+          if (/^\d{4}[\-\/\s]?((((0[13578])|(1[02]))[\-\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\-\/\s]?(([0-2][0-9])|(30)))|(02[\-\/\s]?[0-2][0-9]))$/.test(value)) return true;
+
+          return 'Date must be in format YYYY-MM-DD.'
+        }
+      ],
     }),
     methods: {
     register() {
@@ -255,6 +271,7 @@ import patientService from '../services/PatientService'
         this.$refs.registerForm.reset();
     },
     registerPatient() {
+      patient.userId = 
       patientService.create(this.patient);
     }
     }

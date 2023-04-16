@@ -27,27 +27,18 @@
           hide-details
           class="ma-2"
           label="doctors"
+          @click="createTimeSlots"
           @change="chosenDoctor"
         ></v-select>
         <v-select
-          v-model="mode"
-          :items="modes"
-          dense
-          outlined
-          hide-details
-          label="event-overlap-mode"
-          class="ma-2"
-        ></v-select>
-        <v-select
-          v-model="timeslots"
-          :items="times"
+          v-model="timeSlotByDoctor"
+          :items="timeSlotByDoctor"
           item-text="startTime"
           dense
           outlined
           hide-details
           label="timeslots"
           class="ma-2"
-          
         ></v-select>
         <v-spacer></v-spacer>
         <v-btn
@@ -61,12 +52,11 @@
       <v-sheet>
         <v-calendar
             ref="calendar"
-            
-            :value="today"
-            
+            v-model: selectedDate
+            :now="now"
             color="primary"
             type="week"
-            :start="today"
+            
           ></v-calendar>
       </v-sheet>
    </v-container>
@@ -83,13 +73,20 @@ export default {
     },
     data() {
         return {
-            mode: 'stack',
-            modes: ['stack', 'column'],
             weekday: [0, 1, 2, 3, 4, 5, 6],
-            timeSlots: [1, 2],
+            timeSlots: [],
             timeSlotByDoctor: [],
-            today: new Date(),  
-            selected: 0,
+            now: new Date(),
+            selected: null, // id of doctor,
+            selectedDate: null,
+            appointment: {
+              patientId: 0,
+              doctorId: '',
+              appointmentDuration: 30,
+              description: '',
+              appointmentDate: '2023-04-16',
+              appointmentTime: '08:00:00'
+            }
         }
     },
     methods: {
@@ -97,17 +94,29 @@ export default {
           doctorTimeService.getAllTimeSlots().then(response => {
           this.$store.commit("SET_TIMESLOTS", response.data);
         });
-      },
-        chosenDoctor() {
-          console.log('testtestest', this.doctorObj);
-          this.selected = this.doctorObj.doctorId;
         },
-        
+          chosenDoctor() {
+          this.selected = this.doctorObj.doctorId;
+//this.timeSlots.length
+          for (let i = 0; i < 10; i++) {
+//if (this.timeSlots[i].doctorId === this.selected) {
+              this.timeSlotByDoctor.push(i);
+    //        }
+          }
+          
+        },
+        // createTimeSlots() {
+        //   let current = this.timeSlots.filter( timeObj => timeObj.doctorId === this.selected);
+          
+        //   if (current.doctorId === this.selected) {
+        //     for (let i = 8; i < 16; i++) {
+        //       this.timeSlotByDoctor.push(i);
+        //     }
+        //   }
+        // }
     },
     computed: {
-      getTimeForDoc() {
-        return this.selected;
-      }
+      
       // loop over timeslots object to acces start time and end time
         // push first time into timeSlotByDoctor
         // each loop, increment minutes by 30
@@ -118,9 +127,9 @@ export default {
         this.getTimeSlots();
         this.doctors = this.$store.state.doctors;
         this.timeSlots = this.$store.state.timeSlots;
-        console.log('ID: ', this.selectedId);
-        console.log(this.doctorNames);
-    }
+    },
+    
+    
 }
     
 </script>

@@ -4,8 +4,8 @@
       <div class="display-4 ma-4 d-flex justify-center">
         Patients
       </div>
-      <v-data-table
-        :items="patients"
+    <v-data-table
+        :items="this.$store.state.patients"
         :headers="headers"
         >
       </v-data-table>
@@ -35,7 +35,7 @@ export default {
   },
   created() {
       patientService.getPatientList().then(response => {
-      this.doctors = response.data;
+      this.patients = response.data;
     })
   }
 };

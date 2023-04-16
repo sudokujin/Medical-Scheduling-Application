@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/appointments")
 @RestController
 @CrossOrigin
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 public class AppointmentController {
     private final AppointmentDao appointmentDao;
 

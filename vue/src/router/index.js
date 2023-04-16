@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Calendar from '../components/Calendar.vue'
+import AppointmentForm from '../components/AppointmentForm.vue'
 
 Vue.use(Router)
 
@@ -65,7 +66,7 @@ const router = new Router({
      {
       path: "/doctors/:id",
       name: "doctor",
-      component: Calendar,
+      component: AppointmentForm,
       meta: {
         requiresAuth: false
       }
