@@ -1,8 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Doctor;
 import com.techelevator.model.Patient;
-import com.techelevator.model.User;
 
 import java.util.List;
 

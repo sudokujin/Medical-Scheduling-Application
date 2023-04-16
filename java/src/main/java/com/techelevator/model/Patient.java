@@ -6,7 +6,7 @@ import java.util.Date;
 public class Patient {
     private int patientId;
 
-    private int userId;
+    private Integer userId;
     private String firstName;
     private String lastName;
     private String address;
