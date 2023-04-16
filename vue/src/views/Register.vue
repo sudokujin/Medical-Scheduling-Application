@@ -271,7 +271,7 @@ import patientService from '../services/PatientService'
         this.$refs.registerForm.reset();
     },
     registerPatient() {
-      patient.userId = 
+      patient.userId = this.$store.state.user.id
       patientService.create(this.patient);
     }
     }
