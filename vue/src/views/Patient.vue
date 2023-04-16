@@ -1,8 +1,8 @@
 <template>
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
-        <div id="register" class="text-center">
-          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="registerPatient();">
+        <div id="registerPatient" class="text-center">
+          <v-form ref="registerPatientForm" id="registerPatientForm" v-model="valid" @submit.prevent="registerPatient();">
 
             <v-text-field
                 v-model="patient.firstName"
@@ -108,12 +108,6 @@ import patientService from '../services/PatientService'
   export default {
     name: "PatientForm",
     data: () => ({
-        user: {
-            username: '',
-            password: '',
-            confirmPassword: '',
-            role: 'user',
-        },
         patient: {
           //user.id = thisUserIdNumber
             userId: patientService.getMaxId(),
@@ -211,7 +205,7 @@ import patientService from '../services/PatientService'
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
     clearInput() {
-        this.$refs.registerForm.reset();
+        this.$refs.registerPatientForm.reset();
     },
     registerPatient() {
       patientService.create(this.patient);
