@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Patient;
+import com.techelevator.model.User;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,7 +60,16 @@ public class JdbcPatientDao implements PatientDao{
         }
         return patients;
     }
-
+    @Override
+    public Patient getPatientByUserId(int userId) {
+        String sql = "SELECT * FROM patient WHERE user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        if (results.next()) {
+            return mapRowToPatient(results);
+        } else {
+            return null;
+        }
+    }
     @Override
     public int findPatientIdByPatientLastName(String patientLastName) {
         if (patientLastName == null) throw new IllegalArgumentException("Last name cannot be null");
