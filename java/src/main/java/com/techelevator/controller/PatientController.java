@@ -41,6 +41,11 @@ public class PatientController {
         return patientDao.findAllPatients();
     }
 
+    @GetMapping("/user/{id}")
+    public Patient getPatientByUserId(@PathVariable int id) {
+        return patientDao.getPatientByUserId(id);
+    }
+
     @PostMapping("")
     public void createPatient(@Valid @RequestBody Patient patient) {
         Patient newPatient = patient;

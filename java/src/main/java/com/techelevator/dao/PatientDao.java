@@ -11,6 +11,8 @@ public interface PatientDao {
 
     Patient getPatientById(int patientId);
 
+    Patient getPatientByUserId(int userId);
+
     int findPatientIdByPatientLastName (String patientLastName);
 
     void create(Patient patient);
