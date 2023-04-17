@@ -11,14 +11,9 @@ export default {
     getPatientList() {
         return http.get('/patients');
     },
-    get(id) {
+    getPatientByUserId(id) {
         return http.get(`/patients/user/${id}`)
     },
-
-    get(id) {
-        return http.get(`/patients/${id}`);
-    },
-    
     update(id, patient) {
         return http.put(`/patients/${id}`, patient);
     },

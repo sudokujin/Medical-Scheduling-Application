@@ -32,6 +32,7 @@
 
 <script>
 import doctorService from '../services/DoctorService.js';
+import patientService from '../services/PatientService.js'
 
 export default {
   name: "doctor-list",
@@ -57,14 +58,21 @@ export default {
       this.$router.push({name: 'doctor'})
     }
   },
+  getPatientInfo() {
+    patientService.getPatientByUserId(this.userId).then(response => {
+      this.$store.commit("SET_PATIENT", response.data)
+    })
+  },
   data() {
     return {
       doctors: [],  
-      item: 'hello'
+      item: 'hello',
+      userId: this.$store.state.user.id
     }
   },
   created() {
       this.getDoctors();
+      this.getPatientByUserId();
   }
 };
 </script>
