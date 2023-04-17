@@ -60,6 +60,7 @@ export default {
   },
   getPatientInfo() {
     patientService.getPatientByUserId(this.userId).then(response => {
+      console.log('response', response.data);
       this.$store.commit("SET_PATIENT", response.data)
     })
   },
@@ -72,7 +73,12 @@ export default {
   },
   created() {
       this.getDoctors();
-      this.getPatientByUserId();
+      this.getPatientInfo();
+      patientService.getPatientByUserId(this.userId).then(response => {
+      console.log('response', response.data);
+      this.$store.commit("SET_PATIENT", response.data)
+      console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+    })
   }
 };
 </script>

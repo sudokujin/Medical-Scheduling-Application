@@ -15,10 +15,12 @@
         :items="this.$store.state.doctors"
         :headers="headers"
         hide-default-footer
+        v-model="doctorObj"
+        item-key="id"
         >
-        <template v-slot:[`item.action`]="{}">
+        <template v-slot:[`item.action`]="{item}">
             <v-icon @click="getItem()">mdi-pencil-circle-outline</v-icon>
-            <v-icon @click="removeDoctor()">mdi-trash-can-outline</v-icon>
+            <v-icon @click="removeDoctor(item.doctorId)">mdi-trash-can-outline</v-icon>
          </template>
       </v-data-table>
       </v-card >
@@ -62,20 +64,26 @@ export default {
     getItem() {
       this.item = '';
       this.$router.push({name: 'doctor'})
-    }
+    },
+    removeDoctor(id) {
+      doctorService.deleteDoctor(id).then(response => {
+        if (response.status === 200) {
+          this.getDoctors();
+        }
+      })
+    },
   },
   data() {
     return {
       doctors: [],  
-      item: 'hello'
+      item: 'hello',
+
     }
   },
   created() {
       this.getDoctors();
   },
-  removeDoctor() {
-      doctorService.deleteDoctor()
-  },
+  
 
 };
 </script>
