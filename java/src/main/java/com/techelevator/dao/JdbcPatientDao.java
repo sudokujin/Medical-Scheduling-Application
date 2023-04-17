@@ -5,6 +5,10 @@ import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +36,13 @@ public class JdbcPatientDao implements PatientDao{
         return patient;
     }
 
-
+    @Override
+    public String getPatientName() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        String currentUserName = ((UserDetails) authentication.getPrincipal()).getUsername();
+        return currentUserName;
+    }
 
 
     @Override
@@ -74,8 +84,7 @@ public class JdbcPatientDao implements PatientDao{
     @Override
     public Integer getMaxId() {
         String sql = "SELECT(MAX(user_id)) FROM users;";
-        Integer userId = jdbcTemplate.queryForObject(sql, Integer.class);
-        return userId;
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
     @Override

@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+/* eslint-disable */
+var userId = 5;
+
 const http = axios.create({
     baseURL: "http://localhost:9000"
 });
@@ -24,8 +27,18 @@ export default {
     create(patient) {
         return http.post(`/patients`, patient);
     },
-
-    getMaxId() {
-        return http.get(`/patients/maxId`)
+    async getMaxId() {
+        let config = {
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        const response = await axios.get('http://localhost:9000/patients/maxId', config)
+        this.response = JSON.parse(response.data.userId);
+        console.log(this.response);
+        return this.response
+    },
+    getUserName() {
+        return http.get(`/patients/currentUserName`);
     }
 }

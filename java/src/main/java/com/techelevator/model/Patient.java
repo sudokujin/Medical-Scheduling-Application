@@ -97,7 +97,7 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

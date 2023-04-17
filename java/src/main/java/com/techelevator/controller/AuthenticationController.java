@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import javax.validation.Valid;
 
 import com.techelevator.model.*;
+import com.techelevator.security.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -40,7 +43,7 @@ public class AuthenticationController {
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = tokenProvider.createToken(authentication, false);
+        String jwt = tokenProvider.createToken(authentication, true);
         
         User user = userDao.findByUsername(loginDto.getUsername());
 
@@ -57,6 +60,15 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+        }
+    }
+
+    @GetMapping("/gold")
+    public String getCurrentUserName() {
+        if (SecurityUtils.getCurrentUsername().isPresent()) {
+            return (String) SecurityUtils.getCurrentUsername().get();
+        } else {
+            return "derp";
         }
     }
 

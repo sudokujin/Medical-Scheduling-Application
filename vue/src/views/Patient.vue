@@ -80,7 +80,7 @@
 
             <v-text-field
               v-model="patient.birthdate"
-              :rules="nameRules"
+              :rules="dateRules"
               :counter="100"
               label="Birth date"
               prepend-inner-icon="mdi-cake"
@@ -91,7 +91,7 @@
             <v-btn type="submit" :disabled="!valid">Submit Patient Information</v-btn>
 
     
-            <v-btn @click="clearInput">
+            <v-btn @click="getId">
               Clear Fields
             </v-btn>
 
@@ -104,13 +104,14 @@
 
 <script>
 import patientService from '../services/PatientService'
+import axios from 'axios';
 
   export default {
     name: "PatientForm",
     data: () => ({
         patient: {
           //user.id = thisUserIdNumber
-            userId: patientService.getMaxId(),
+            userId: 5,
             firstName: '',
             lastName: '',
             address: '',
@@ -208,8 +209,24 @@ import patientService from '../services/PatientService'
         this.$refs.registerPatientForm.reset();
     },
     registerPatient() {
+    this.patient.userId = parseInt(patientService.getMaxId());
       patientService.create(this.patient);
-    }
+    },
+    async getId() {
+        let config = {
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        const response = await axios.get('http://localhost:9000/patients/maxId', config)
+        this.response = JSON.parse(response.data.userId);
+        console.log(this.response);
+    },
+    },
+    created() {
+       let results =  patientService.getMaxId();
+       console.log(results); 
+       console.log(patientService.getMaxId());
     }
   }
 </script>
