@@ -87,4 +87,23 @@ public class DoctorTimeController {
         return arr;
     }
 
+    @PostMapping("/array")
+    public ArrayList<String> poopoo() throws ParseException {
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date first = localDateFormat.parse("08:00:00");
+        Date second = localDateFormat.parse("17:00:00");
+
+
+        Date next = first;
+        ArrayList<String> arr = new ArrayList<>();
+        do {
+            System.out.println(localDateFormat.format(next));
+            String time = (String) localDateFormat.format(next); // <== Only changed line (and using a deprecated API)
+            java.sql.Time timeValue = new java.sql.Time(localDateFormat.parse(time).getTime());
+            System.out.println(timeValue);
+            arr.add(time);
+        } while ((next = new Date(next.getTime() + 1800000
+        )).before(second));
+        return arr;
+    }
 }
