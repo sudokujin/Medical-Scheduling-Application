@@ -4,10 +4,8 @@
    <navbar />
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="appointment" class="text-center">
-          <v-form ref="appointmentForm" id="appointmentForm" v-model="valid" @submit.prevent="createAppointment">
-
-            <v-text-field 
-            > </v-text-field>
+          <v-card>
+          <v-form class="px-6 pb-5 pt-6" ref="appointmentForm" id="appointmentForm" v-model="valid" @submit.prevent="createAppointment">
         <v-select
           :items="this.$store.state.doctors"
           v-model="doctorObj"
@@ -58,6 +56,7 @@
             </v-btn>
 
           </v-form>
+          </v-card>
         </div>
       </v-col>
     </v-container>
