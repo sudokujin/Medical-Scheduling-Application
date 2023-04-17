@@ -10,15 +10,31 @@
           <div role="alert" v-if="this.$route.query.registration">
             Thank you for registering, please sign in.
           </div>
-          <div class="form-input-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" v-model="user.username" required autofocus />
-          </div>
-          <div class="form-input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" v-model="user.password" required />
-          </div>
-          <button type="submit">Sign in</button>
+            <v-text-field
+              id="username"
+              v-model="user.username"
+              required
+              autofocus
+              label="username"
+              prepend-inner-icon="mdi-account"
+              outlined
+              class="mt-4"
+            >
+            </v-text-field>
+            <v-text-field
+              type="password"
+              id="password"
+              v-model="user.password"
+              required
+              autofocus
+              label="password"
+              prepend-inner-icon="mdi-lock"
+              outlined
+              class="mt-4"
+            >
+            </v-text-field>
+            
+          <v-btn class="mb-4" type="submit">Sign in</v-btn>
           <p>
             <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
           </v-form>

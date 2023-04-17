@@ -1,6 +1,6 @@
 <template>
 <v-container fill-height fluid>
-  <h1 class="mb-6">Welcome!</h1>
+  <h1 class="mb-6">Welcome, {{this.$store.state.currentPatient.firstName}}!</h1>
   <v-row
       justify="center">
       <v-col class="mx-16 px-16">
@@ -56,13 +56,12 @@ export default {
     getItem() {
       this.item = '';
       this.$router.push({name: 'doctor'})
+    },
+    getPatientInfo() {
+      patientService.getPatientByUserId(this.userId).then(response => {
+        this.$store.commit("SET_PATIENT", response.data);
+      });
     }
-  },
-  getPatientInfo() {
-    patientService.getPatientByUserId(this.userId).then(response => {
-      console.log('response', response.data);
-      this.$store.commit("SET_PATIENT", response.data)
-    })
   },
   data() {
     return {
@@ -74,11 +73,6 @@ export default {
   created() {
       this.getDoctors();
       this.getPatientInfo();
-      patientService.getPatientByUserId(this.userId).then(response => {
-      console.log('response', response.data);
-      this.$store.commit("SET_PATIENT", response.data)
-      console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-    })
   }
 };
 </script>

@@ -2,8 +2,9 @@
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="register" class="text-center">
-          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register();">
-
+          <v-card>
+          <v-form class="px-6 pb-5 pt-6" ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register();">
+            <h1>Please Register</h1>
             <v-text-field
                 id="username"
                 v-model="user.username"
@@ -12,6 +13,8 @@
                 label="Username"
                 prepend-inner-icon="mdi-account"
                 required
+                outlined
+                class="mt-4"
               ></v-text-field>
 
             <v-text-field 
@@ -23,6 +26,7 @@
                 :rules="nameRules"
                 prepend-inner-icon="mdi-lock"
                 required
+                outlined
             > </v-text-field>
 
             <v-text-field 
@@ -34,6 +38,7 @@
                 :rules="nameRules"
                 prepend-inner-icon="mdi-lock"
                 required
+                outlined
             > </v-text-field>
 
 
@@ -46,6 +51,7 @@
 
             <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
           </v-form>
+          </v-card>
         </div>
       </v-col>
     </v-container>
