@@ -1,19 +1,33 @@
 <template>
-  <v-app>
-   
-      <div class="display-4 ma-4 d-flex justify-center">
-        Doctors
+<v-container fill-height fluid>
+  <h1 class="mb-6">Welcome!</h1>
+  <v-row
+      justify="center">
+      <v-col class="mx-16 px-16">
+      <v-divider> </v-divider>
+      <div class="display-1 ma-4 d-flex justify-center">
+        Available Doctors
       </div>
+      
+      <v-card >
       <v-data-table
         :items="this.$store.state.doctors"
         :headers="headers"
+        hide-default-footer
         >
-        <template v-slot:[`item.action`]="{item}">
-          <v-btn @click="getItem(item)">Schedule Appointment</v-btn>
-        </template>
+        
       </v-data-table>
-    
-  </v-app>
+      </v-card >
+      <v-btn
+       class="mt-3"
+       @click="getItem()"
+       >
+        Book Appointment
+      </v-btn>
+      
+      </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>
@@ -29,7 +43,6 @@ export default {
         {text: 'Specialty', value: 'specialty'},
         {text: 'Suite', value: 'suiteNumber'},
         {text: 'Cost Per Hour', value: 'costPerHour'},
-        {text: 'Schedule Appointment', value: 'action'}
       ]
     }
   },
@@ -55,3 +68,6 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+</style>

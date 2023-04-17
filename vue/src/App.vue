@@ -18,3 +18,14 @@ export default {
   }
 };
 </script>
+
+<style >
+  #app {
+    background-color: #CBC6C7;
+  }
+
+  .v-data-table .v-data-table-header tr th {
+  font-size: 24px !important;
+}
+  
+</style>

@@ -1,6 +1,7 @@
 /* eslint-disable */
 <template>
  <v-container fill-height fluid>
+   <navbar />
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="appointment" class="text-center">
           <v-form ref="appointmentForm" id="appointmentForm" v-model="valid" @submit.prevent="createAppointment">
@@ -64,12 +65,13 @@
 
 <script>
 import AppointmentService from '../services/AppointmentService'
-
+import Navbar from '../components/Navbar.vue'
 
 
 export default {
     name: 'AppointmentForm',
     components: {
+      Navbar
     },
     data: () => ({
                   appointment: {

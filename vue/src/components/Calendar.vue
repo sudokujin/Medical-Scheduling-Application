@@ -30,16 +30,6 @@
           @click="createTimeSlots"
           @change="chosenDoctor"
         ></v-select>
-        <v-select
-          v-model="timeSlotByDoctor"
-          :items="timeSlotByDoctor"
-          item-text="startTime"
-          dense
-          outlined
-          hide-details
-          label="timeslots"
-          class="ma-2"
-        ></v-select>
         <v-spacer></v-spacer>
         <v-btn
           icon
