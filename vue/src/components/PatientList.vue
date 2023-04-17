@@ -28,15 +28,20 @@ export default {
       ]
     }
   },
+  methods: {
+    getPatients() {
+      patientService.getPatientList().then(response => {
+        this.$store.commit("SET_PATIENTS", response.data)
+      })
+    }
+  },
   data() {
     return {
       patients: [],  
     }
   },
   created() {
-      patientService.getPatientList().then(response => {
-      this.patients = response.data;
-    })
+      this.getPatients();
   }
 };
 </script>
