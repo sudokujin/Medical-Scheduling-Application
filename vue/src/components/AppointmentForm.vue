@@ -4,7 +4,7 @@
    <navbar />
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="appointment" class="text-center">
-          <v-card>
+          <v-card  >
           <v-form class="px-6 pb-5 pt-6" ref="appointmentForm" id="appointmentForm" v-model="valid" @submit.prevent="createAppointment">
         <v-select
           :items="this.$store.state.doctors"
@@ -15,9 +15,10 @@
           dense
           outlined
           hide-details
-          class="ma-2"
+          class="ma-2 pb-6"
           label="doctors"
           @change="chosenDoctor"
+          
         ></v-select>
 
             <v-text-field  

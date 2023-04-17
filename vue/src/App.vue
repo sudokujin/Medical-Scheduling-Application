@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    
     <v-main>
       <router-view/>
     </v-main>
@@ -21,7 +20,7 @@ export default {
 
 <style >
   #app {
-    background-color: #CBC6C7;
+    background-color: #84BFE3  ;
   }
 
   .v-data-table .v-data-table-header tr th {

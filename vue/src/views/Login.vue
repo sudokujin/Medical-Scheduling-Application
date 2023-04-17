@@ -1,33 +1,31 @@
 <template>
-<v-container fill-height fluid>
-  <v-row align="center"
-      justify="center">
-      <v-col>
-  <div id="login" class ="text-center">
-    <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
-      <div role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
-    </form>
-  </div>
-  </v-col>
-  </v-row>
-</v-container>
+  <v-container fill-height fluid>
+    <v-col align="center" justify="center" fill-height class="d-flex justify-center">
+      <v-card>
+      <v-form class="px-6 pb-5 pt-6"  @submit.prevent="login">
+        <h1 >Please Sign In</h1>
+          <div role="alert" v-if="invalidCredentials">
+            Invalid username and password!
+          </div>
+          <div role="alert" v-if="this.$route.query.registration">
+            Thank you for registering, please sign in.
+          </div>
+          <div class="form-input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" v-model="user.username" required autofocus />
+          </div>
+          <div class="form-input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" v-model="user.password" required />
+          </div>
+          <button type="submit">Sign in</button>
+          <p>
+            <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+          </v-form>
+      </v-card>
+    </v-col>
+  
+  </v-container>
 </template>
 
 <script>
