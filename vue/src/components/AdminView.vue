@@ -16,7 +16,7 @@
         :headers="headers"
         hide-default-footer
         >
-        <template v-slot:[`item.action`]="{ item }">
+        <template v-slot:[`item.action`]="{}">
             <v-icon @click="getItem()">mdi-pencil-circle-outline</v-icon>
             <v-icon @click="removeDoctor()">mdi-trash-can-outline</v-icon>
          </template>
