@@ -8,6 +8,7 @@ import store from '../store/index'
 import Calendar from '../components/Calendar.vue'
 import AppointmentForm from '../components/AppointmentForm.vue'
 import Patient from '../views/Patient.vue'
+import RegisterDoctorForm from '../components/RegisterDoctorForm'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ const router = new Router({
       path: "/patientInfo",
       name: "patientInfo",
       component: Patient,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/doctorInfo",
+      name: "doctorInfo",
+      component: RegisterDoctorForm,
       meta: {
         requiresAuth: false
       }
