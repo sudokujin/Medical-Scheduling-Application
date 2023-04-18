@@ -1,8 +1,8 @@
 <template>
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
-        <div id="registerPatient" class="text-center">
-          <v-form ref="registerPatientForm" id="registerPatientForm" v-model="valid" @submit.prevent="registerPatient();">
+        <div id="register" class="text-center">
+          <v-form ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="registerPatient();">
 
             <v-text-field
                 v-model="patient.firstName"
@@ -80,7 +80,7 @@
 
             <v-text-field
               v-model="patient.birthdate"
-              :rules="dateRules"
+              :rules="nameRules"
               :counter="100"
               label="Birth date"
               prepend-inner-icon="mdi-cake"
@@ -91,7 +91,7 @@
             <v-btn type="submit" :disabled="!valid">Submit Patient Information</v-btn>
 
     
-            <v-btn @click="getId">
+            <v-btn @click="clearInput">
               Clear Fields
             </v-btn>
 
@@ -104,14 +104,19 @@
 
 <script>
 import patientService from '../services/PatientService'
-import axios from 'axios';
 
   export default {
     name: "PatientForm",
     data: () => ({
+        user: {
+            username: '',
+            password: '',
+            confirmPassword: '',
+            role: 'user',
+        },
         patient: {
           //user.id = thisUserIdNumber
-            userId: 5,
+            userId: null,
             firstName: '',
             lastName: '',
             address: '',
@@ -200,33 +205,25 @@ import axios from 'axios';
         }
       ],
     }),
+    async created() {
+    // make an API call to get the maximum userId value
+    const maxUserId = await patientService.getMaxId();
+    // set the userId field in the patient object to the maximum userId value + 1
+    this.patient.userId = maxUserId + 1;
+  },
     methods: {
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
     clearInput() {
-        this.$refs.registerPatientForm.reset();
+        this.$refs.registerForm.reset();
     },
     registerPatient() {
-    this.patient.userId = parseInt(patientService.getMaxId());
-      patientService.create(this.patient);
-    },
-    async getId() {
-        let config = {
-            headers: {
-                'Accept': 'application/json'
-            }
-        }
-        const response = await axios.get('http://localhost:9000/patients/maxId', config)
-        this.response = JSON.parse(response.data.userId);
-        console.log(this.response);
-    },
-    },
-    created() {
-       let results =  patientService.getMaxId();
-       console.log(results); 
-       console.log(patientService.getMaxId());
+    this.patient.userId = parseInt(this.patient.userId);
+    patientService.registerPatient(this.patient)
     }
   }
+  }
 </script>
+
