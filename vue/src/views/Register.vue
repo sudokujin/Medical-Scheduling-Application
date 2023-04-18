@@ -4,6 +4,10 @@
         <div id="register" class="text-center">
           <v-card>
           <v-form class="px-6 pb-5 pt-6" ref="registerForm" id="registerForm" v-model="valid" @submit.prevent="register();">
+            <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
             <h1>Please Register</h1>
             <v-text-field
                 id="username"
