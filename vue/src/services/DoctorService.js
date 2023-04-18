@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+/* eslint-disable */
+var userId = 5;
 const http = axios.create({
     baseURL: "http://localhost:9000"
 });

@@ -173,13 +173,9 @@ import doctorService from '../services/DoctorService'
         }
       ],
     }),
-    async created() {
-    // make an API call to get the maximum userId value
-    const maxUserId = await doctorService.getMaxId();
-    // set the userId field in the patient object to the maximum userId value + 1
-    this.doctor.userId = maxUserId + 1;
-    },
+  
     methods: {
+    
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
@@ -190,14 +186,14 @@ import doctorService from '../services/DoctorService'
     registerDoctor() {
     this.doctor.userId = parseInt(this.doctor.userId);
       doctorService.createDoctor(this.doctor);
-      
-      //this.$router.push("/")
+      this.$router.push("/")
+    }
+  
     },
-    },
-    created() {
+    async created() {
        let results =  doctorService.getMaxId();
-       console.log(results); 
-       console.log(doctorService.getMaxId());
+       const maxUserId = await doctorService.getMaxId();
+    this.doctor.userId = maxUserId;
     }
   }
 </script>
