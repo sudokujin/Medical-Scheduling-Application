@@ -13,9 +13,9 @@ public interface DoctorTimeDao {
 
     List<DoctorTime> getAllDoctorTime();
 
-    DoctorTime getStartTimeByDoctorIdDate (int doctorId, Date officeDate);
+    Time getStartTimeByDoctorIdDate (int doctorId, Date officeDate);
 
-    String getEndTimeByDoctorIdDate (int doctorId, Date officeDate);
+    Time getEndTimeByDoctorIdDate (int doctorId, Date officeDate);
 
     void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime);
 

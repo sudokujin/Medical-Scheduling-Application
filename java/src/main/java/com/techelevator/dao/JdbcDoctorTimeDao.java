@@ -53,30 +53,22 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public DoctorTime getStartTimeByDoctorIdDate(int doctorId, Date officeDate) {
-        DoctorTime startTime = null;
+    public Time getStartTimeByDoctorIdDate(int doctorId, Date officeDate) {
+        Time startTime = null;
         String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, officeDate);
+        startTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[] {doctorId, officeDate});
 
-        if(results.next()){
-            startTime = mapRowToDoctorTime(results);
-        }
         return startTime;
     }
 
     @Override
-    public String getEndTimeByDoctorIdDate(int doctorId, Date officeDate) {
-        String endTime;
+    public Time getEndTimeByDoctorIdDate(int doctorId, Date officeDate) {
+        Time endTime = null;
         String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
-        try {
-            endTime = jdbcTemplate.queryForObject(sql, Time.class, doctorId, officeDate).toString();
-        } catch (EmptyResultDataAccessException e) {
-            // Handle the case when no results are found
-            endTime = "7:00:00";
-        }
+        endTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[]{doctorId, officeDate});
+
         return endTime;
     }
-
     @Override                                          //int or Time? ..I think should be time
     public void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime) {
         String sql = "UPDATE public.doctor_time\n" +
