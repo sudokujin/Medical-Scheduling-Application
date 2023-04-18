@@ -224,10 +224,12 @@ import patientService from '../services/PatientService'
     },
     clearInput() {
         this.$refs.registerForm.reset();
+        
     },
     registerPatient() {
     this.patient.userId = parseInt(this.patient.userId);
-    patientService.registerPatient(this.patient)
+    patientService.create(this.patient);
+    this.$router.push("/login")
     }
   }
   }

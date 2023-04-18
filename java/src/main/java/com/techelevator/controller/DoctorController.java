@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/doctors")
 @RestController
@@ -43,6 +44,10 @@ public class DoctorController {
     @DeleteMapping("/{id}")
     public void deleteDoctor(@PathVariable int id) {
         doctorDao.deleteDoctorById(id);
+    }
+    @GetMapping("/maxId")
+    public Map<String, Integer> getMaxId() {
+        return Map.of("userId", (Integer) doctorDao.getMaxId());
     }
 
 

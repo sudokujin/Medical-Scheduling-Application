@@ -1,15 +1,23 @@
 <template>
-    <v-app>
-   
-      <div class="display-4 ma-4 d-flex justify-center">
+<v-container fill-height fluid>
+  <v-row
+         justify="center">
+      <v-col class="mx-16 px-16">
+      <h1 class="mb-6">What's up, doc?</h1>
+      <v-divider class="mb-16"> </v-divider>
+      <div class="display-1 ma-2 mt-16">
         Patients
       </div>
     <v-data-table
         :items="this.$store.state.patients"
         :headers="headers"
+        hide-default-footer
         >
       </v-data-table>
-  </v-app>
+      
+      </v-col>
+      </v-row>
+</v-container>
 </template>
 
 <script>
