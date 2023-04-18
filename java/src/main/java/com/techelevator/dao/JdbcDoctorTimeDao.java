@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 @Component
 public class JdbcDoctorTimeDao implements DoctorTimeDao{
 
@@ -51,34 +53,10 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public DoctorTime getDoctorTimeByDoctorId(int doctorId) {
-        DoctorTime doctorTime = null;
-        String sql = "SELECT * FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
-
-        if(results.next()){
-            doctorTime = mapRowToDoctorTime(results);
-        }
-        return doctorTime;
-    }
-
-    @Override
-    public DoctorTime getOfficeDateByDoctorId(int doctorId) {
-        DoctorTime officeDate = null;
-        String sql = "SELECT office_date FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
-
-        if(results.next()){
-            officeDate = mapRowToDoctorTime(results);
-        }
-        return officeDate;
-    }
-
-    @Override
-    public DoctorTime getStartTimeByDoctorId(int doctorId) {
+    public DoctorTime getStartTimeByDoctorIdDate(int doctorId, Date officeDate) {
         DoctorTime startTime = null;
-        String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+        String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, officeDate);
 
         if(results.next()){
             startTime = mapRowToDoctorTime(results);
@@ -87,10 +65,10 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public DoctorTime getEndTimeByDoctorId(int doctorId) {
+    public DoctorTime getEndTimeByDoctorIdDate(int doctorId, Date officeDate) {
         DoctorTime endTime = null;
-        String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;" ;
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+        String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, officeDate);
 
         if(results.next()){
             endTime = mapRowToDoctorTime(results);

@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -68,6 +69,21 @@ public class JdbcAppointmentDao implements AppointmentDao{
         String sql = "SELECT * FROM appointment JOIN doctor ON appointment.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ?;";
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+            while(result.next()) {
+                appointments.add(mapRowToAppointment(result));
+            }
+        } catch (NullValueInNestedPathException | EmptyResultDataAccessException e) {
+            throw new RuntimeException("No appointment found");
+        }
+        return appointments;
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByDoctorIdDate(int doctorId, Date appointmentDate) {
+        List<Appointment> appointments = new ArrayList<>();
+        String sql = "SELECT * FROM appointment JOIN doctor ON appointment.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND appointment.appointment_date = ?;";
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, doctorId, appointmentDate);
             while(result.next()) {
                 appointments.add(mapRowToAppointment(result));
             }
