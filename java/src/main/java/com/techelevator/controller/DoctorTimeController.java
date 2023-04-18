@@ -11,6 +11,9 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -88,10 +91,17 @@ public class DoctorTimeController {
     }
 
     @GetMapping("/array")
-    public ArrayList<String> blah(Integer id, Date date) throws ParseException {
+    public ArrayList<String> blah(Integer id, String date) throws ParseException {
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-        Date first = localDateFormat.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, date).toString());
-        Date second = localDateFormat.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, date).toString());
+        id = 2;
+        String dateString = "2023-10-18";
+        LocalDate checking = LocalDate.parse(dateString);
+        Date check2 = Date.from(checking.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        Date customDate = dateFormat.parse(dateString);
+        Date first = localDateFormat.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, check2).toString());
+        Date second = localDateFormat.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, check2).toString());
 
 
         Date next = first;
@@ -105,7 +115,7 @@ public class DoctorTimeController {
         } while ((next = new Date(next.getTime() + 1800000
         )).before(second));
 
-        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, date);
+        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, customDate);
         ArrayList<String> appointmentTimes = new ArrayList<>();
         for (int i = 0; i < appointmentArrayList.size(); i++) {
             appointmentTimes.add(appointmentArrayList.get(0).getAppointmentTime().toString());

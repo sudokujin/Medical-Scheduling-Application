@@ -28,23 +28,23 @@ VALUES ('YoungjinLovesCake','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft
 -- doctors CHANGE USER_ID ACCODRINGLY
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number)
-VALUES(1, 'Qing','Jin','Dermontology',3, 3000, '34792347');
+VALUES(3, 'Qing','Jin','Dermontology',3, 3000, '34792347');
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number)
-VALUES(2, 'Jordan','Bruntz','Bones',4, 4000, '234683264283');
+VALUES(4, 'Jordan','Bruntz','Bones',4, 4000, '234683264283');
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number)
-VALUES(3, 'Dom','Lorenz','Heart Surgeon', 5, 6000, '333333');
+VALUES(5, 'Salaj','Choudhary','Brain doctor', 6, 8000, '73737262');
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number)
-VALUES(4, 'Salaj','Choudhary','Brain doctor', 6, 8000, '73737262');
+VALUES(6, 'Dom','Lorenz','Heart Surgeon', 5, 6000, '333333');
 
 INSERT INTO doctor
 (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number)
-VALUES(5, 'Youngjin','Kwon','Psychologist', 7, 9000, '384834756834');
+VALUES(7, 'Youngjin','Kwon','Psychologist', 7, 9000, '384834756834');
 -------------------------------------------------------------------------------------------------------
 
 -- patient/user RUN THIS FIRST
