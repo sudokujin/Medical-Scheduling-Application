@@ -63,7 +63,7 @@ export default {
     },
     getItem() {
       this.item = '';
-      this.$router.push({name: 'doctor'})
+      this.$router.push({name: 'doctorAccount'})
     },
     removeDoctor(id) {
       doctorService.deleteDoctor(id).then(response => {

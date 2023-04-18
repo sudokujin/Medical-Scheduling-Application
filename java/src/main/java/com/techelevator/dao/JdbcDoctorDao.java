@@ -68,7 +68,7 @@ public class JdbcDoctorDao implements DoctorDao{
     public void create(Doctor doctor) {
         String sql = "INSERT INTO doctor (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?);" ;
-        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getPhoneNumber());
+        jdbcTemplate.update(sql, doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getPhoneNumber());
 
         }
 
@@ -87,6 +87,11 @@ public class JdbcDoctorDao implements DoctorDao{
         String deleteDoctorById = "delete from doctor where doctor_id = ?;";
         jdbcTemplate.update(deleteDoctorById, doctorId);
         }
+    @Override
+    public Integer getMaxId() {
+        String sql = "SELECT(MAX(user_id)) FROM users;";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
 
 
 

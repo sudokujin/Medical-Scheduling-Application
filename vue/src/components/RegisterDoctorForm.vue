@@ -2,8 +2,13 @@
     <v-container fill-height fluid>
       <v-col align="center" justify="center" fill-height class="d-flex justify-center"> 
         <div id="registerDoctor" class="text-center">
-          <v-form ref="registerDoctorForm" id="registerDoctorForm" v-model="valid" @submit.prevent="registerDoctor();">
-
+          <v-card>
+          <v-form class="px-6 pb-5 pt-6" ref="registerDoctorForm" id="registerDoctorForm" v-model="valid" @submit.prevent="registerDoctor();">
+            <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
+            <h1>Please Enter Doctor's Information</h1>
             <v-text-field
                 v-model="doctor.firstName"
                 :rules="nameRules"
@@ -28,8 +33,8 @@
               v-model="doctor.specialty"
               :rules="nameRules"
               :counter="50"
-              label="E-mail"
-              prepend-inner-icon="mdi-email"
+              label="Specialty"
+              prepend-inner-icon="mdi-account-star"
               required
             ></v-text-field>
 
@@ -37,7 +42,7 @@
               v-model="doctor.suiteNumber"
               :rules="nameRules"
               :counter="50"
-              label="Zipcode"
+              label="Suite Number"
               prepend-inner-icon="mdi-map-marker"
               required
             ></v-text-field>
@@ -46,8 +51,8 @@
               v-model="doctor.costPerHour"
               :rules="nameRules"
               :counter="50"
-              label="Phone Number"
-              prepend-inner-icon="mdi-phone"
+              label="Cost Per Hour"
+              prepend-inner-icon="mdi-currency-usd"
               required
             ></v-text-field>
 
@@ -60,15 +65,14 @@
               required
             ></v-text-field>
 
-            <v-btn type="submit" :disabled="!valid">Submit Patient Information</v-btn>
+            <v-btn type="submit" :disabled="!valid">Submit Doctor Information</v-btn>
 
     
             <v-btn @click="clearInput">
               Clear Fields
             </v-btn>
-
-            <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
           </v-form>
+          </v-card>
         </div>
       </v-col>
     </v-container>
@@ -76,21 +80,20 @@
 
 <script>
 import doctorService from '../services/DoctorService'
-import axios from 'axios';
+
 
   export default {
     name: "DoctorForm",
     data: () => ({
         doctor: {
           //user.id = thisUserIdNumber
-            userId: 5,
+            userId: null,
             firstName: '',
             lastName: '',
             specialty: '',
             suiteNumber: '',
             costPerHour: '',
             phoneNumber: '',
-            officeHour: '',
         },
         registrationErrors: false,
         registrationErrorMsg: 'There were problems registering this user.',
@@ -170,6 +173,12 @@ import axios from 'axios';
         }
       ],
     }),
+    async created() {
+    // make an API call to get the maximum userId value
+    const maxUserId = await doctorService.getMaxId();
+    // set the userId field in the patient object to the maximum userId value + 1
+    this.doctor.userId = maxUserId + 1;
+    },
     methods: {
     clearErrors() {
       this.registrationErrors = false;
@@ -179,24 +188,16 @@ import axios from 'axios';
         this.$refs.registerDoctorForm.reset();
     },
     registerDoctor() {
-    this.doctor.userId = parseInt(patientService.getMaxId());
-      doctorService.create(this.doctor);
-    },
-    async getId() {
-        let config = {
-            headers: {
-                'Accept': 'application/json'
-            }
-        }
-        const response = await axios.get('http://localhost:9000/patients/maxId', config)
-        this.response = JSON.parse(response.data.userId);
-        console.log(this.response);
+    this.doctor.userId = parseInt(this.doctor.userId);
+      doctorService.createDoctor(this.doctor);
+      
+      //this.$router.push("/")
     },
     },
     created() {
-       let results =  patientService.getMaxId();
+       let results =  doctorService.getMaxId();
        console.log(results); 
-       console.log(patientService.getMaxId());
+       console.log(doctorService.getMaxId());
     }
   }
 </script>

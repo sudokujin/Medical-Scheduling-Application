@@ -19,5 +19,5 @@ public interface DoctorDao {
 
     void deleteDoctorById(int doctorId);
 
-
+    Integer getMaxId();
 }
