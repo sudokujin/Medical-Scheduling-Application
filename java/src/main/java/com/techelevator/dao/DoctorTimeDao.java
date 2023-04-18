@@ -1,6 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Doctor;
 import com.techelevator.model.DoctorTime;
 
 import java.sql.Time;
@@ -16,7 +15,7 @@ public interface DoctorTimeDao {
 
     DoctorTime getStartTimeByDoctorIdDate (int doctorId, Date officeDate);
 
-    DoctorTime getEndTimeByDoctorIdDate (int doctorId, Date officeDate);
+    String getEndTimeByDoctorIdDate (int doctorId, Date officeDate);
 
     void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime);
 
