@@ -15,7 +15,7 @@ public class Patient {
     private String zipcode;
     private String patientNumber;
     private String emailAddress;
-    private Date birthdate;
+    private LocalDate birthdate;
 
     public String getEmailAddress() {
         return emailAddress;
@@ -65,11 +65,11 @@ public class Patient {
         this.patientNumber = patientNumber;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -124,3 +124,4 @@ public class Patient {
                 '}';
     }
 }
+

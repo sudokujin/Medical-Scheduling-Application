@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Appointment {
 
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
     private Time appointmentTime;
     private int appointmentId;
     private int patientId;
@@ -23,11 +23,11 @@ public class Appointment {
         this.appointmentDuration = appointmentDuration;
     }
 
-    public Date getAppointmentDate() {
+    public LocalDate getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -87,3 +87,4 @@ public class Appointment {
                 '}';
     }
 }
+

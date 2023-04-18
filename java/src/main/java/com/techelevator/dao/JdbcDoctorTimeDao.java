@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +54,7 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public Time getStartTimeByDoctorIdDate(int doctorId, Date officeDate) {
+    public Time getStartTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
         Time startTime = null;
         String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
         startTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[] {doctorId, officeDate});
@@ -62,7 +63,7 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public Time getEndTimeByDoctorIdDate(int doctorId, Date officeDate) {
+    public Time getEndTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
         Time endTime = null;
         String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
         endTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[]{doctorId, officeDate});
@@ -123,12 +124,11 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
         DoctorTime doctorTime = new DoctorTime();
         doctorTime.setDoctorTimeId(results.getInt("doctor_time_id"));
         doctorTime.setDoctorId(results.getInt("doctor_id"));
-        doctorTime.setOfficeDate(results.getDate("office_date"));
+        doctorTime.setOfficeDate(results.getObject("office_date", LocalDate.class));
         doctorTime.setStart_time(results.getTime("start_time"));
         doctorTime.setEnd_time(results.getTime("end_time"));
 
         return doctorTime;
-
     }
 
 

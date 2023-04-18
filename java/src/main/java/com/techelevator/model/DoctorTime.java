@@ -1,12 +1,13 @@
 package com.techelevator.model;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DoctorTime {
     private int doctorTimeId;
     private int doctorId;
-    private Date officeDate;
+    private LocalDate officeDate;
     private Time start_time;
     private Time end_time;
 
@@ -29,11 +30,11 @@ public class DoctorTime {
         this.doctorId = doctorId;
     }
 
-    public Date getOfficeDate() {
+    public LocalDate getOfficeDate() {
         return officeDate;
     }
 
-    public void setOfficeDate(Date officeDate) {
+    public void setOfficeDate(LocalDate officeDate) {
         this.officeDate = officeDate;
     }
 

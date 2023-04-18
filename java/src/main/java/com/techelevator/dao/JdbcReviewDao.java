@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class JdbcReviewDao implements ReviewDao {
         review.setReviewTitle(result.getString("review_title"));
         review.setReviewBody(result.getString("review_body"));
         review.setReviewRating(result.getInt("review_rating"));
-        review.setReviewDate(result.getDate("review_date"));
+        review.setReviewDate(result.getObject("review_date", LocalDate.class));
         review.setPatientId(result.getInt("patient_id"));
 
         return review;
@@ -81,3 +82,4 @@ public class JdbcReviewDao implements ReviewDao {
     }
 
 }
+
