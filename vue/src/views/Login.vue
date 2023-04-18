@@ -3,6 +3,10 @@
     <v-col align="center" justify="center" fill-height class="d-flex justify-center">
       <v-card>
       <v-form class="px-6 pb-5 pt-6"  @submit.prevent="login">
+        <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
         <h1 >Please Sign In</h1>
           <div role="alert" v-if="invalidCredentials">
             Invalid username and password!

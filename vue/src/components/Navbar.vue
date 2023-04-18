@@ -7,7 +7,10 @@
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <span class="font-weight-light">Medical Bros</span>
             <v-spacer></v-spacer>
-            <v-icon>icon </v-icon>
+            <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
         </v-app-bar>
         <v-navigation-drawer app v-model="drawer">
             <v-list-item>
