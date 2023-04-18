@@ -16,6 +16,7 @@ CREATE TABLE doctor (
 	specialty varchar(50) NOT NULL,
 	suite_number int NOT NULL,
 	costPerHour int NOT NULL,
+	phone_number varchar(50) NOT NULL,
 	CONSTRAINT pk_doctor_doctor_id PRIMARY KEY (doctor_id),
 	CONSTRAINT FK_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
@@ -34,6 +35,7 @@ CREATE TABLE patient (
 	CONSTRAINT pk_patient_patient_id PRIMARY KEY (patient_id),
 	CONSTRAINT FK_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
+
 CREATE TABLE appointment (
 	appointment_id SERIAL NOT NULL,
 	patient_id int NOT NULL,
