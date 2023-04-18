@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Appointment;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface AppointmentDao {
 
     Appointment getAppointmentById (int appointmentId);
 
-    List<Appointment> getAppointmentsByDoctorIdDate(int doctorId, Date officeDate);
+    List<Appointment> getAppointmentsByDoctorIdDate(int doctorId, LocalDate officeDate);
 
     List<Appointment> getAppointmentsByPatientId(int patientId);
 

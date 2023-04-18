@@ -1,13 +1,14 @@
 package com.techelevator.model;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Availability {
     private int availabilityId;
     private int doctorId;
     private int patientId;
-    private Date apptDate;
+    private LocalDate apptDate;
     private String apptTime;
 
     public int getAvailabilityId() {
@@ -34,11 +35,11 @@ public class Availability {
         this.patientId = patientId;
     }
 
-    public Date getApptDate() {
+    public LocalDate getApptDate() {
         return apptDate;
     }
 
-    public void setApptDate(Date apptDate) {
+    public void setApptDate(LocalDate apptDate) {
         this.apptDate = apptDate;
     }
 

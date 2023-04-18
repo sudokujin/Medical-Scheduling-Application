@@ -11,7 +11,7 @@ public class Review {
     private int reviewRating;
     private String reviewTitle;
     private String reviewBody;
-    private Date reviewDate;
+    private LocalDate reviewDate;
 
     public int getReviewId() {
         return reviewId;
@@ -61,11 +61,11 @@ public class Review {
         this.reviewBody = reviewBody;
     }
 
-    public Date getReviewDate() {
+    public LocalDate getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(Date reviewDate) {
+    public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
 

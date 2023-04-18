@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +80,7 @@ public class JdbcAppointmentDao implements AppointmentDao{
     }
 
     @Override
-    public List<Appointment> getAppointmentsByDoctorIdDate(int doctorId, Date appointmentDate) {
+    public List<Appointment> getAppointmentsByDoctorIdDate(int doctorId, LocalDate appointmentDate) {
         List<Appointment> appointments = new ArrayList<>();
         String sql = "SELECT * FROM appointment JOIN doctor ON appointment.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND appointment.appointment_date = ?;";
         try {
@@ -123,11 +124,9 @@ public class JdbcAppointmentDao implements AppointmentDao{
         appointment.setAppointmentDuration(results.getInt("appointment_duration"));
         appointment.setDescription(results.getString("description"));
         appointment.setAppointmentTime(results.getTime("appointment_time"));
-        appointment.setAppointmentDate(results.getDate("appointment_date"));
+        appointment.setAppointmentDate(results.getObject("appointment_date", LocalDate.class));
         return appointment;
 
     }
-
-
 }
 

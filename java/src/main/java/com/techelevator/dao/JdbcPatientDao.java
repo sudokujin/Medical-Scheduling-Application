@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,7 +126,7 @@ public class JdbcPatientDao implements PatientDao{
         patient.setZipcode(results.getString("zipcode"));
         patient.setEmailAddress(results.getString("email_address"));
         patient.setPatientNumber(results.getString("patient_number"));
-        patient.setBirthdate(results.getDate("birthdate"));
+        patient.setBirthdate(results.getObject("birthdate", LocalDate.class));
 
         return patient;
 
