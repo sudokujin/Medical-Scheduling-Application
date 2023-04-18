@@ -6,13 +6,9 @@ import java.sql.Time;
 import java.time.LocalDate;
 
 public class Doctor {
-    @NotBlank
     private int doctorId;
-    @NotBlank
     private int userId;
-    @NotBlank
     private String firstName;
-    @NotBlank
     private String lastName;
     private String specialty;
     private int suiteNumber;
