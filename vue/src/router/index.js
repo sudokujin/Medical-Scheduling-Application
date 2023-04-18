@@ -8,7 +8,7 @@ import store from '../store/index'
 import Calendar from '../components/Calendar.vue'
 import AppointmentForm from '../components/AppointmentForm.vue'
 import Patient from '../views/Patient.vue'
-
+import DoctorAccount from '../components/DoctorAccount'
 import ReviewView from '../views/ReviewView.vue'
 
 import RegisterDoctorForm from '../components/RegisterDoctorForm'
@@ -97,6 +97,14 @@ const router = new Router({
       path: "/reviews",
       name: "reviews",
       component: ReviewView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+      {
+      path: "/doctorAccount",
+      name: "doctorAccount",
+      component: DoctorAccount,
       meta: {
         requiresAuth: false
       }
