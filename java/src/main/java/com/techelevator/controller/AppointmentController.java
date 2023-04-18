@@ -20,10 +20,15 @@ public class AppointmentController {
     public AppointmentController(AppointmentDao appointmentDao) {
         this.appointmentDao = appointmentDao;
     }
+
+    @GetMapping("")
+    public List<Appointment> getAppointments() { return appointmentDao.getAppointments(); }
+
     @GetMapping("/{id}")
     public Appointment getAppointmentById(@PathVariable int id) {
         return appointmentDao.getAppointmentById(id);
     }
+
     @GetMapping("/patient/{id}")
     public List<Appointment> getAppointmentsByPatientId(@PathVariable int id) {
         return appointmentDao.getAppointmentsByPatientId(id);

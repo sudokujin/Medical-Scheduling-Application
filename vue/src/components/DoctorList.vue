@@ -1,19 +1,32 @@
 <template>
 <v-container fill-height fluid>
-  <h1 class="mb-6">Welcome, {{this.$store.state.currentPatient.firstName}}!</h1>
+  
   <v-row
       justify="center">
       <v-col class="mx-16 px-16">
-      <v-divider> </v-divider>
-      <div class="display-1 ma-4 d-flex justify-center">
+      <h1 class="mb-6">Welcome, {{this.$store.state.currentPatient.firstName}}!</h1>
+      <v-divider class="mb-16"> </v-divider>
+      
+      <v-card
+      max-width="400"
+      flat
+      class="mb-6"
+      >
+        <v-card-title> Office Name Here </v-card-title>
+        <v-card-text>
+          <p> Office Address Here </p>
+          <p> Main Phone Number Here </p>
+      </v-card-text>
+      </v-card>
+      <div class="display-1 ma-2 mt-16">
         Available Doctors
       </div>
-      
       <v-card >
       <v-data-table
         :items="this.$store.state.doctors"
         :headers="headers"
         hide-default-footer
+        
         >
 
       </v-data-table>
@@ -57,6 +70,7 @@ export default {
       this.item = '';
       this.$router.push({name: 'doctor'})
     },
+    // sets current patient object in vuex
     getPatientInfo() {
       patientService.getPatientByUserId(this.userId).then(response => {
         this.$store.commit("SET_PATIENT", response.data);
@@ -66,7 +80,6 @@ export default {
   data() {
     return {
       doctors: [],  
-      item: 'hello',
       userId: this.$store.state.user.id
     }
   },

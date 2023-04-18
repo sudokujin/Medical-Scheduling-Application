@@ -118,6 +118,7 @@ export default {
     },
       createAppointment() {
         AppointmentService.createAppointment(this.appointment);
+        this.$router.push('/');
       },
 
     chosenDoctor() {

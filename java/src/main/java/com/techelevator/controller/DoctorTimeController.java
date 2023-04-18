@@ -22,7 +22,6 @@ public class DoctorTimeController {
         this.doctorTimeDao = doctorTimeDao;
     }
 
-
     @GetMapping("/{id}")
     public DoctorTime getTimeByDoctorId (@PathVariable Integer id) {
         return doctorTimeDao.getDoctorTimeByDoctorId(id);

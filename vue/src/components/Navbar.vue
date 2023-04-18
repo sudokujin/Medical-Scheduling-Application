@@ -25,7 +25,7 @@
     
             >
                 <v-list-item><router-link class="rl" v-bind:to="{ name: 'home' }">Home</router-link><br></v-list-item>
-                <v-list-item><router-link v-bind:to="{ name: 'calendar' }">Calendar</router-link></v-list-item>
+                <v-list-item><router-link class="rl" v-bind:to="{ name: 'calendar' }">Calendar</router-link></v-list-item>
                 <v-list-item ><router-link class="rl" v-bind:to="{ name: 'reviews' }">Reviews</router-link></v-list-item>
                 <v-list-item><router-link class="rl" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></v-list-item>
                

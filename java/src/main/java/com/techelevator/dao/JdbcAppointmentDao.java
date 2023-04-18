@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Appointment;
+import com.techelevator.model.Doctor;
 import com.techelevator.model.Patient;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -19,6 +20,18 @@ public class JdbcAppointmentDao implements AppointmentDao{
 
     public JdbcAppointmentDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public List <Appointment> getAppointments(){
+        List<Appointment> appointments = new ArrayList<>();
+        String sql = "SELECT * " + "FROM appointment;" ;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        if(results.next()){
+            appointments.add(mapRowToAppointment(results));
+        }
+        return appointments;
     }
 
     @Override
