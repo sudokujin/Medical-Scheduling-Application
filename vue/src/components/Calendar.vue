@@ -107,7 +107,7 @@ export default {
     },
     methods: {
         getTimeSlots() {
-          doctorTimeService.getAllTimeSlots().then(response => {
+          doctorTimeService.getTimeArray().then(response => {
           this.$store.commit("SET_TIMESLOTS", response.data);
           });
         },

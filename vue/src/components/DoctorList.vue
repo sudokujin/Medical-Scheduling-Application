@@ -12,10 +12,11 @@
       flat
       class="mb-6"
       >
-        <v-card-title> Office Name Here </v-card-title>
+        <v-card-title> {{this.officeInfo.officeName}} </v-card-title>
         <v-card-text>
-          <p> Office Address Here </p>
-          <p> Main Phone Number Here </p>
+          <p> {{this.officeInfo.mainAddress}} </p>
+          <p> {{this.officeInfo.cityState}}</p>
+          <p> {{this.officeInfo.mainPhone}}</p>
       </v-card-text>
       </v-card>
       <div class="display-1 ma-2 mt-16">
@@ -80,7 +81,13 @@ export default {
   data() {
     return {
       doctors: [],  
-      userId: this.$store.state.user.id
+      userId: this.$store.state.user.id,
+      officeInfo: {
+        officeName: "Party Doctors United",
+        mainAddress: "1420 Savelives st",
+        cityState: "Phoenix, AZ",
+        mainPhone: "800-500-1212"
+      }
     }
   },
   created() {

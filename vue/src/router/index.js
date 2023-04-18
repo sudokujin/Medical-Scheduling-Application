@@ -8,6 +8,7 @@ import store from '../store/index'
 import Calendar from '../components/Calendar.vue'
 import AppointmentForm from '../components/AppointmentForm.vue'
 import Patient from '../views/Patient.vue'
+import ReviewView from '../views/ReviewView.vue'
 
 Vue.use(Router)
 
@@ -80,6 +81,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/reviews",
+      name: "reviews",
+      component: ReviewView,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 })
 
