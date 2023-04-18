@@ -66,9 +66,9 @@ public class JdbcDoctorDao implements DoctorDao{
 
     @Override
     public void create(Doctor doctor) {
-        String sql = "INSERT INTO doctor (user_id, first_name,last_name,specialty,suite_number, costperhour) " +
-                "VALUES (?, ?, ?, ?, ?, ?);" ;
-        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour());
+        String sql = "INSERT INTO doctor (user_id, first_name,last_name,specialty,suite_number, costperhour, phone_number) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?);" ;
+        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getUserId(), doctor.getFirstName(), doctor.getLastName(), doctor.getSpecialty(), doctor.getSuiteNumber(),doctor.getCostPerHour(), doctor.getPhoneNumber());
 
         }
 
@@ -76,9 +76,9 @@ public class JdbcDoctorDao implements DoctorDao{
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
         String sql = "UPDATE doctor SET user_id=?, first_name=?,last_name,specialty=?," +
-                "suite_number=?, costperhour=? WHERE doctor_id = ?;";
+                "suite_number=?, costperhour=? phone_number=? WHERE doctor_id = ?;";
         jdbcTemplate.update(sql,doctor.getDoctorId(),doctor.getUserId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
-                doctor.getSuiteNumber(), doctor.getCostPerHour());
+                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getPhoneNumber());
 
     }
 
@@ -88,19 +88,7 @@ public class JdbcDoctorDao implements DoctorDao{
         jdbcTemplate.update(deleteDoctorById, doctorId);
         }
 
-//     @Override
-//     public boolean isDoctor(){
-//        String sql = "select * from doctor join doctor_users on doctor.doctor_id = doctor_users.doctor_id \n" +
-//                "join users on users.user_id = doctor_users.user_id\n" +
-//                "where role ='doctor';";
-//         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-//
-//         if(result.next()){
-//             return true;
-//         }
-//         return false;
-//
-//     }
+
 
     private Doctor mapRowToDoctor(SqlRowSet results) {
         Doctor doctor = new Doctor();
@@ -111,6 +99,7 @@ public class JdbcDoctorDao implements DoctorDao{
         doctor.setSpecialty(results.getString("specialty"));
         doctor.setSuiteNumber(results.getInt("suite_number"));
         doctor.setCostPerHour(results.getInt("costperhour"));
+        doctor.setPhoneNumber(results.getString("phone_number"));
         return doctor;
 
     }

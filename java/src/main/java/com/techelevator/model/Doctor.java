@@ -17,26 +17,7 @@ public class Doctor {
     private String specialty;
     private int suiteNumber;
     private int costPerHour;
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getOfficeHour() {
-        return officeHour;
-    }
-
-    public void setOfficeHour(String officeHour) {
-        this.officeHour = officeHour;
-    }
-
     private String phoneNumber;
-
-    private String officeHour;
 
     public int getDoctorId() {
         return doctorId;
@@ -86,6 +67,14 @@ public class Doctor {
 
     public void setCostPerHour(int costPerHour) {
         this.costPerHour = costPerHour;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Doctor() {
