@@ -32,7 +32,7 @@ export default {
     createEndTime(doctorTime){
         return http.create(`/time/create/end`, doctorTime)
     },
-    getTimeArray() {
-        return http.get(`/time/array`)
+    getTimeArray(id, date) {
+        return http.get(`/time/array`, id, date)
     }
 }
