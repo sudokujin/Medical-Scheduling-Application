@@ -74,7 +74,7 @@ public class JdbcReviewDao implements ReviewDao {
         review.setReviewTitle(result.getString("review_title"));
         review.setReviewBody(result.getString("review_body"));
         review.setReviewRating(result.getInt("review_rating"));
-        review.setReviewDate(result.getObject("review_date", LocalDate.class));
+        review.setReviewDate(LocalDate.parse(result.getString("review_date")));
         review.setPatientId(result.getInt("patient_id"));
 
         return review;

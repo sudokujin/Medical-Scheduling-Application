@@ -2,14 +2,15 @@ package com.techelevator.model;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class DoctorTime {
     private int doctorTimeId;
     private int doctorId;
     private LocalDate officeDate;
-    private Time start_time;
-    private Time end_time;
+    private LocalTime start_time;
+    private LocalTime end_time;
 
     public DoctorTime() {
 
@@ -38,19 +39,19 @@ public class DoctorTime {
         this.officeDate = officeDate;
     }
 
-    public Time getStart_time() {
+    public LocalTime getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Time start_time) {
+    public void setStart_time(LocalTime start_time) {
         this.start_time = start_time;
     }
 
-    public Time getEnd_time() {
+    public LocalTime getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(Time end_time) {
+    public void setEnd_time(LocalTime end_time) {
         this.end_time = end_time;
     }
 

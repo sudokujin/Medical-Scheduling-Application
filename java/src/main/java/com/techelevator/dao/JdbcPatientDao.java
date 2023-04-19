@@ -126,7 +126,7 @@ public class JdbcPatientDao implements PatientDao{
         patient.setZipcode(results.getString("zipcode"));
         patient.setEmailAddress(results.getString("email_address"));
         patient.setPatientNumber(results.getString("patient_number"));
-        patient.setBirthdate(results.getObject("birthdate", LocalDate.class));
+        patient.setBirthdate(LocalDate.parse(results.getString("birthdate")));
 
         return patient;
 
