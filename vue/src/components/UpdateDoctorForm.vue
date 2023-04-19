@@ -143,12 +143,8 @@ import DoctorService from '../services/DoctorService'
         clearInput() {
             this.$refs.registerDoctorForm.reset();
         },
-        getDocUserId() {
-          this.doctor.userId = this.$store.state.doctorToUpdate.userId;
-          this.doctor.doctorId = this.$store.state.doctorToUpdate.doctorId;
-        },
         updateDoctor() {
-          DoctorService.updateDoctor(this.$store.state.doctorToUpdate.doctorId, this.doctor).then(response => {
+          DoctorService.updateDoctor(this.doctor.doctorId, this.doctor).then(response => {
             if (response.status === 200) {
               this.$router.push('/');
             }
@@ -156,7 +152,11 @@ import DoctorService from '../services/DoctorService'
         }
       },
     created() {
-       this.getDocUserId();
-    }
+      this.doctor.userId = this.$store.state.doctorToUpdate.userId;
+      this.doctor.doctorId = this.$store.state.doctorToUpdate.doctorId;
+      console.log('start');
+      console.log(this.$store.state.doctorToUpdate);
+      console.log('end');
+    },
   }
 </script>
