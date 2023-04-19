@@ -21,14 +21,20 @@
           
         ></v-select>
 
-            <v-text-field  
-            v-model="appointment.appointmentTime"
-              :rules="timeRules"
-              :counter="100"
-              label="Appointment Time"
-              prepend-inner-icon="mdi-cake"
-              required   
-                       ></v-text-field>
+            <v-select
+          :items="this.$store.state.doctors"
+          v-model="doctorObj"
+          item-text="firstName"
+          item-value="id"
+          return-object
+          dense
+          outlined
+          hide-details
+          class="ma-2 pb-6"
+          label="doctors"
+          @change="chosenDoctor"
+          
+        ></v-select>
 
             <v-text-field
               v-model="appointment.description"
