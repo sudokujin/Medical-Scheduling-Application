@@ -19,7 +19,7 @@
         item-key="id"
         >
         <template v-slot:[`item.action`]="{item}">
-            <v-icon @click="getItem()">mdi-pencil-circle-outline</v-icon>
+            <v-icon @click="updateDoctor(); getDocById(item.doctorId)">mdi-pencil-circle-outline</v-icon>
             <v-icon @click="removeDoctor(item.doctorId)">mdi-trash-can-outline</v-icon>
          </template>
       </v-data-table>
@@ -56,6 +56,9 @@ export default {
     }
   },
   methods: {
+    updateDoctor() {
+      this.$router.push('/updateDoctor');
+    },
     getDoctors() {
       doctorService.getAllDoctors().then(response => {
         this.$store.commit("SET_DOCTORS", response.data);
@@ -72,6 +75,11 @@ export default {
         }
       })
     },
+    getDocById(id) {
+      doctorService.get(id).then(response => {
+        this.$store.commit("SET_DOCTORTOUPDATE", response.data);
+      });
+    }
   },
   data() {
     return {
@@ -82,6 +90,7 @@ export default {
   },
   created() {
       this.getDoctors();
+      this.getDocById();
   },
   
 

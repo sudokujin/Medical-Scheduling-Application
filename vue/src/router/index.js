@@ -9,9 +9,9 @@ import Calendar from '../components/Calendar.vue'
 import AppointmentForm from '../components/AppointmentForm.vue'
 import Patient from '../views/Patient.vue'
 import DoctorAccount from '../components/DoctorAccount'
-import ReviewView from '../views/ReviewView.vue'
-
+import UpdateDoctorForm from '../components/UpdateDoctorForm'
 import RegisterDoctorForm from '../components/RegisterDoctorForm'
+import ReviewView from '../views/ReviewView'
 
 
 Vue.use(Router)
@@ -105,6 +105,14 @@ const router = new Router({
       path: "/doctorAccount",
       name: "doctorAccount",
       component: DoctorAccount,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/updateDoctor",
+      name: "UpdateDoctorForm",
+      component: UpdateDoctorForm,
       meta: {
         requiresAuth: false
       }
