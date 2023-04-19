@@ -33,6 +33,6 @@ export default {
         return http.create(`/time/create/end`, doctorTime)
     },
     getTimeArray(id, date) {
-        return http.get(`/time/array`, id, date)
+        return http.get(`/time/array/${id}/${date}`, id, date)
     }
 }

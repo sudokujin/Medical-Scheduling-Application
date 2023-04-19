@@ -34,6 +34,6 @@ export default {
         const response = await axios.get('http://localhost:9000/doctors/maxId', config)
         this.response = JSON.parse(response.data.userId);
         console.log(this.response);
-        return this.response
+        return this.response;
     },
 }
