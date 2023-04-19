@@ -75,10 +75,11 @@ public class JdbcDoctorDao implements DoctorDao{
 
     @Override
     public void updateDoctor(int doctorId, Doctor doctor) {
-        String sql = "UPDATE doctor SET user_id=?, first_name=?,last_name,specialty=?," +
-                "suite_number=?, costperhour=? phone_number=? WHERE doctor_id = ?;";
-        jdbcTemplate.update(sql,doctor.getDoctorId(),doctor.getUserId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
-                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getPhoneNumber());
+        String sql = "UPDATE public.doctor\n" +
+                "\tSET user_id=?, first_name=?, last_name=?, specialty=?, suite_number=?, costperhour=?, phone_number=?\n" +
+                "\tWHERE doctor_id=?;";
+        jdbcTemplate.update(sql,doctor.getUserId(), doctor.getFirstName(),doctor.getLastName(),doctor.getSpecialty(),
+                doctor.getSuiteNumber(), doctor.getCostPerHour(), doctor.getPhoneNumber(),doctor.getDoctorId());
 
     }
 

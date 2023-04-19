@@ -90,7 +90,6 @@ export default {
   },
   created() {
       this.getDoctors();
-      this.getDocById();
   },
   
 
