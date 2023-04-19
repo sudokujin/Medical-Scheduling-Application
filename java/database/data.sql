@@ -92,27 +92,81 @@ INSERT INTO review(
 -- appointment
 INSERT INTO appointment(
 	patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
-	VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Dom'), 30, 'brain fog', '2023/08/08', '8:00:00');
+	VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Dom'), 30, 'brain fog1', '2023/10/18', '11:00:00');
 
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Dom'), 30, 'brain fog2', '2023/10/18', '11:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Dom'), 30, 'brain fog3', '2023/10/18', '10:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Dom'), 30, 'brain fog4', '2023/10/18', '13:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Salaj'), 30, 'WOOOO1', '2023/10/17', '9:00:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Salaj'), 30, 'WOOOO2', '2023/10/17', '9:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Salaj'), 30, 'WOOOO3', '2023/10/17', '11:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Youngjin'), 30, 'hiya1', '2023/10/19', '11:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Youngjin'), 30, 'hiya2', '2023/10/19', '13:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Youngjin'), 30, 'hiya3', '2023/10/19', '15:30:00');
+
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Jordan'), 30, '420', '2023/10/15', '11:30:00');
+
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Jordan'), 30, '420', '2023/10/15', '14:30:00');
+
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Qing'), 30, 'lol', '2023/10/10', '15:30:00');
+
+INSERT INTO appointment(
+patient_id, doctor_id, appointment_duration, description, appointment_date, appointment_time)
+VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Anthony'), (SELECT doctor_id FROM doctor WHERE doctor.first_name='Qing'), 30, 'lol', '2023/10/10', '11:30:00');
 -- doctor_time
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (1, '2023/10/10', '8:00:00', '5:00:00');
+	VALUES (1, '2023/10/10', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (2, '2023/10/15', '8:00:00', '5:00:00');
+	VALUES (2, '2023/10/15', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (3, '2023/10/17', '8:00:00', '5:00:00');
+	VALUES (3, '2023/10/17', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (4, '2023/10/18', '8:00:00', '5:00:00');
+	VALUES (4, '2023/10/18', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (5, '2023/10/19', '8:00:00', '5:00:00');
+	VALUES (5, '2023/10/19', '8:00:00', '17:00:00');
 
 COMMIT TRANSACTION;

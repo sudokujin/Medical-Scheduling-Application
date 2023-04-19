@@ -96,19 +96,19 @@ public class DoctorTimeController {
 //    }
 //}
 
-    @GetMapping("/array")
-    public ArrayList<String> blah(Integer id, String date) throws ParseException {
-//        id = 5;
-//        String dateString = "1776-07-04";
-//        LocalDate customDate = LocalDate.parse(dateString);
+    @GetMapping("/array/{id}/{date}")
+    public ArrayList<String> blah(@PathVariable Integer id, @PathVariable String date) throws ParseException {
+        id = 5;
+        String dateString = "1776-07-04";
+        LocalDate customDate = LocalDate.parse(dateString);
         LocalDate dateToPassIn = LocalDate.parse(date);
         LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, dateToPassIn).toString());
         LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, dateToPassIn).toString());
 
         ArrayList<String> arr = new ArrayList<>();
 
-        String breakTime = "12:00:00";
-        String breakTimeTwo = "12:30:00";
+        String breakTime = "12:00";
+        String breakTimeTwo = "12:30";
 
         ArrayList<String> breakTimes = new ArrayList<>();
 
@@ -116,10 +116,6 @@ public class DoctorTimeController {
         breakTimes.add(breakTimeTwo);
 
         while (first.isBefore(second)) {
-
-//            if(first.equals(breakTime) || first.equals(breakTimeTwo)) {
-//                continue;
-//            }
                 arr.add(first.toString());
             first = first.plusMinutes(30L);
         }
