@@ -96,41 +96,48 @@ public class DoctorTimeController {
 //    }
 //}
 
-    @GetMapping("/array")
-    public ArrayList<String> blah(Integer id, String date) throws ParseException {
-        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-        id = 1;
-        String dateString = "2023-10-10";
-        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+    @GetMapping("/array/{id}/{date}")
+    public ArrayList<String> blah(@PathVariable Integer id, @PathVariable String date) throws ParseException {
+        id = 5;
+        String dateString = "1776-07-04";
         LocalDate customDate = LocalDate.parse(dateString);
-        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, customDate).toString());
-        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, customDate).toString());
+        LocalDate dateToPassIn = LocalDate.parse(date);
+        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, dateToPassIn).toString());
+        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, dateToPassIn).toString());
 
-        LocalTime next = first;
         ArrayList<String> arr = new ArrayList<>();
 
-        LocalTime time = LocalTime.parse("09:00:00");
-        LocalTime time2 = LocalTime.parse("17:00:00");
-        // if (minute > 45) {
-        //     time = time.plusHours(1L).withMinute(0);
-        // } else {
-        //     time = time.withMinute(minute < 30 ? minute < 15 ? 15 : 30: 45);
-        // }
+        String breakTime = "12:00";
+        String breakTimeTwo = "12:30";
 
-        while (time.isBefore(time2)) {
-            // Stream.iterate(time.truncatedTo(ChronoUnit.MINUTES), t -> t.plusMinutes(30))
-            //         .forEach(System.out::println);
-            arr.add(time.toString());
-            time = time.plusMinutes(30L);
+        ArrayList<String> breakTimes = new ArrayList<>();
+
+        breakTimes.add(breakTime);
+        breakTimes.add(breakTimeTwo);
+
+        while (first.isBefore(second)) {
+                arr.add(first.toString());
+            first = first.plusMinutes(30L);
         }
 
-        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, customDate);
+        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, dateToPassIn);
         ArrayList<String> appointmentTimes = new ArrayList<>();
         for (int i = 0; i < appointmentArrayList.size(); i++) {
-            appointmentTimes.add(appointmentArrayList.get(0).getAppointmentTime().toString());
+            appointmentTimes.add(appointmentArrayList.get(i).getAppointmentTime().toString());
         }
         arr.removeAll(appointmentTimes);
+        arr.removeAll(breakTimes);
 
+        if(arr.isEmpty()) {
+            first = LocalTime.parse("08:00:00");
+            second = LocalTime.parse("17:00:00");
+            while (first.isBefore(second)) {
+                arr.add(first.toString());
+                first = first.plusMinutes(30L);
+            }
+            arr.removeAll(breakTimes);
+            return arr;
+        }
         return arr;
     }
 //
