@@ -86,7 +86,8 @@ public class JdbcDoctorDao implements DoctorDao{
     public void deleteDoctorById(int doctorId) {
         String deleteDoctorById = "delete from doctor where doctor_id = ?;";
         jdbcTemplate.update(deleteDoctorById, doctorId);
-        }
+    }
+
     @Override
     public Integer getMaxId() {
         String sql = "SELECT(MAX(user_id)) FROM users;";
