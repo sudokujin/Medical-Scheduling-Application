@@ -98,18 +98,22 @@ public class DoctorTimeController {
 
     @GetMapping("/array")
     public ArrayList<String> blah(Integer id, String date) throws ParseException {
-        id = 5;
-        String dateString = "1776-07-04";
-        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
-        LocalDate customDate = LocalDate.parse(dateString);
-        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, customDate).toString());
-        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, customDate).toString());
+//        id = 5;
+//        String dateString = "1776-07-04";
+//        LocalDate customDate = LocalDate.parse(dateString);
+        LocalDate dateToPassIn = LocalDate.parse(date);
+        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, dateToPassIn).toString());
+        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, dateToPassIn).toString());
 
         ArrayList<String> arr = new ArrayList<>();
 
-        LocalTime breakTime = LocalTime.parse("12:00:00");
-        LocalTime breakTimeTwo = LocalTime.parse("12:30:00");
+        String breakTime = "12:00:00";
+        String breakTimeTwo = "12:30:00";
 
+        ArrayList<String> breakTimes = new ArrayList<>();
+
+        breakTimes.add(breakTime);
+        breakTimes.add(breakTimeTwo);
 
         while (first.isBefore(second)) {
 
@@ -120,13 +124,13 @@ public class DoctorTimeController {
             first = first.plusMinutes(30L);
         }
 
-        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, customDate);
+        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, dateToPassIn);
         ArrayList<String> appointmentTimes = new ArrayList<>();
         for (int i = 0; i < appointmentArrayList.size(); i++) {
             appointmentTimes.add(appointmentArrayList.get(i).getAppointmentTime().toString());
         }
         arr.removeAll(appointmentTimes);
-
+        arr.removeAll(breakTimes);
         return arr;
     }
 //
