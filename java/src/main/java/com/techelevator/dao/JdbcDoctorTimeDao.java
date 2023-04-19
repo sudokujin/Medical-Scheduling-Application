@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -54,19 +54,19 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
     }
 
     @Override
-    public Time getStartTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
-        Time startTime = null;
+    public LocalTime getStartTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
+        LocalTime startTime = null;
         String sql = "SELECT start_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
-        startTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[] {doctorId, officeDate});
+        startTime = jdbcTemplate.queryForObject(sql, LocalTime.class, new Object[] {doctorId, officeDate});
 
         return startTime;
     }
 
     @Override
-    public Time getEndTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
-        Time endTime = null;
+    public LocalTime getEndTimeByDoctorIdDate(int doctorId, LocalDate officeDate) {
+        LocalTime endTime = null;
         String sql = "SELECT end_time FROM doctor_time JOIN doctor ON doctor_time.doctor_id=doctor.doctor_id WHERE doctor.doctor_id = ? AND doctor_time.office_date = ?;" ;
-        endTime = jdbcTemplate.queryForObject(sql, Time.class, new Object[]{doctorId, officeDate});
+        endTime = jdbcTemplate.queryForObject(sql, LocalTime.class, new Object[]{doctorId, officeDate});
 
         return endTime;
     }
@@ -124,9 +124,9 @@ public class JdbcDoctorTimeDao implements DoctorTimeDao{
         DoctorTime doctorTime = new DoctorTime();
         doctorTime.setDoctorTimeId(results.getInt("doctor_time_id"));
         doctorTime.setDoctorId(results.getInt("doctor_id"));
-        doctorTime.setOfficeDate(results.getObject("office_date", LocalDate.class));
-        doctorTime.setStart_time(results.getTime("start_time"));
-        doctorTime.setEnd_time(results.getTime("end_time"));
+        doctorTime.setOfficeDate(LocalDate.parse(results.getString("office_date")));
+        doctorTime.setStart_time(results.getTime("start_time").toLocalTime());
+        doctorTime.setEnd_time(results.getTime("end_time").toLocalTime());
 
         return doctorTime;
     }

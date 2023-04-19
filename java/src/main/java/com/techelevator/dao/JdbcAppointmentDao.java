@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,8 +124,8 @@ public class JdbcAppointmentDao implements AppointmentDao{
         appointment.setDoctorId(results.getInt("doctor_id"));
         appointment.setAppointmentDuration(results.getInt("appointment_duration"));
         appointment.setDescription(results.getString("description"));
-        appointment.setAppointmentTime(results.getTime("appointment_time"));
-        appointment.setAppointmentDate(results.getObject("appointment_date", LocalDate.class));
+        appointment.setAppointmentTime((results.getTime("appointment_time").toLocalTime()));
+        appointment.setAppointmentDate(LocalDate.parse(results.getString("appointment_date")));
         return appointment;
 
     }

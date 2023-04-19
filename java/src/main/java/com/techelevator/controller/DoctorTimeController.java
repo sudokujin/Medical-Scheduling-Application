@@ -11,11 +11,15 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 @CrossOrigin
 @RequestMapping("/time")
@@ -73,7 +77,7 @@ public class DoctorTimeController {
     public void updateBothStartAndEndTimeByDoctorId(@PathVariable Integer id, Time startTime, Time endTime) {
         doctorTimeDao.changeStartTimeAndEndTimeByDoctorId(id, startTime, endTime);
     }
-}
+
 
 //    @GetMapping("/222")
 //    public String getTime() throws ParseException {
@@ -92,38 +96,43 @@ public class DoctorTimeController {
 //    }
 //}
 
-//    @GetMapping("/array")
-//    public ArrayList<String> blah(Integer id, String date) throws ParseException {
-//        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-//        id = 1;
-//        String dateString = "2023-10-10";
-//        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
-//        Date customDate = dateFormat.parse(dateString);
-//        Date first = localDateFormat.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, customDate).toString());
-//        Date second = localDateFormat.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, customDate).toString());
-//
-//
-//
-//        Date next = first;
-//        ArrayList<String> arr = new ArrayList<>();
-//        do {
-////            System.out.println(localDateFormat.format(next));
-//            String time = (String) localDateFormat.format(next); // <== Only changed line (and using a deprecated API)
-////            java.sql.Time timeValue = new java.sql.Time(localDateFormat.parse(time).getTime());
-////            System.out.println(timeValue);
-//            arr.add(time);
-//        } while ((next = new Date(next.getTime() + 1800000
-//        )).before(second));
-//
-//        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, customDate);
-//        ArrayList<String> appointmentTimes = new ArrayList<>();
-//        for (int i = 0; i < appointmentArrayList.size(); i++) {
-//            appointmentTimes.add(appointmentArrayList.get(0).getAppointmentTime().toString());
-//        }
-//        arr.removeAll(appointmentTimes);
-//
-//        return arr;
-//    }
+    @GetMapping("/array")
+    public ArrayList<String> blah(Integer id, String date) throws ParseException {
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+        id = 1;
+        String dateString = "2023-10-10";
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        LocalDate customDate = LocalDate.parse(dateString);
+        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, customDate).toString());
+        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, customDate).toString());
+
+        LocalTime next = first;
+        ArrayList<String> arr = new ArrayList<>();
+
+        LocalTime time = LocalTime.parse("09:00:00");
+        LocalTime time2 = LocalTime.parse("17:00:00");
+        // if (minute > 45) {
+        //     time = time.plusHours(1L).withMinute(0);
+        // } else {
+        //     time = time.withMinute(minute < 30 ? minute < 15 ? 15 : 30: 45);
+        // }
+
+        while (time.isBefore(time2)) {
+            // Stream.iterate(time.truncatedTo(ChronoUnit.MINUTES), t -> t.plusMinutes(30))
+            //         .forEach(System.out::println);
+            arr.add(time.toString());
+            time = time.plusMinutes(30L);
+        }
+
+        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, customDate);
+        ArrayList<String> appointmentTimes = new ArrayList<>();
+        for (int i = 0; i < appointmentArrayList.size(); i++) {
+            appointmentTimes.add(appointmentArrayList.get(0).getAppointmentTime().toString());
+        }
+        arr.removeAll(appointmentTimes);
+
+        return arr;
+    }
 //
 //    @PostMapping("/array")
 //    public ArrayList<String> poopoo() throws ParseException {
@@ -145,3 +154,4 @@ public class DoctorTimeController {
 //        return arr;
 //    }
 //}
+}

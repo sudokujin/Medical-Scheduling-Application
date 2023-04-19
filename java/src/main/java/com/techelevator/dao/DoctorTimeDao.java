@@ -4,7 +4,7 @@ import com.techelevator.model.DoctorTime;
 
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface DoctorTimeDao {
@@ -14,9 +14,9 @@ public interface DoctorTimeDao {
 
     List<DoctorTime> getAllDoctorTime();
 
-    Time getStartTimeByDoctorIdDate (int doctorId, LocalDate officeDate);
+    LocalTime getStartTimeByDoctorIdDate (int doctorId, LocalDate officeDate);
 
-    Time getEndTimeByDoctorIdDate (int doctorId, LocalDate officeDate);
+    LocalTime getEndTimeByDoctorIdDate (int doctorId, LocalDate officeDate);
 
     void changeStartTimeAndEndTimeByDoctorId(int doctorId, Time startTime, Time endTime);
 
