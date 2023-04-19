@@ -107,12 +107,16 @@ public class DoctorTimeController {
 
         ArrayList<String> arr = new ArrayList<>();
 
-        LocalTime time = LocalTime.parse("09:00:00");
-        LocalTime time2 = LocalTime.parse("17:00:00");
+        LocalTime breakTime = LocalTime.parse("12:00:00");
+        LocalTime breakTimeTwo = LocalTime.parse("12:30:00");
 
 
         while (first.isBefore(second)) {
-            arr.add(first.toString());
+
+//            if(first.equals(breakTime) || first.equals(breakTimeTwo)) {
+//                continue;
+//            }
+                arr.add(first.toString());
             first = first.plusMinutes(30L);
         }
 
