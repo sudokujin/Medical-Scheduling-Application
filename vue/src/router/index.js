@@ -110,7 +110,7 @@ const router = new Router({
       }
     },
     {
-      path: "/updateDoctor",
+      path: "/updateDoctor/:id",
       name: "UpdateDoctorForm",
       component: UpdateDoctorForm,
       meta: {

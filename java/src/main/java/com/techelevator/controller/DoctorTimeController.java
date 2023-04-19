@@ -98,7 +98,7 @@ public class DoctorTimeController {
 
     @GetMapping("/array/{id}/{date}")
     public ArrayList<String> blah(@PathVariable Integer id, @PathVariable String date) throws ParseException {
-        id = 5;
+//        id = 5;
         String dateString = "1776-07-04";
         LocalDate customDate = LocalDate.parse(dateString);
         LocalDate dateToPassIn = LocalDate.parse(date);

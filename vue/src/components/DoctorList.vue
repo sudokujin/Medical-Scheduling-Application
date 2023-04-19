@@ -4,7 +4,7 @@
   <v-row
       justify="center">
       <v-col class="mx-16 px-16">
-      <h1 class="mb-6">Welcome, {{this.$store.state.currentPatient.firstName}}!</h1>
+      <h1 class="mb-6">Welcome, Patient!</h1>
       <v-divider class="mb-16"> </v-divider>
       
       <v-card
