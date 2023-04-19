@@ -127,6 +127,17 @@ public class DoctorTimeController {
         }
         arr.removeAll(appointmentTimes);
         arr.removeAll(breakTimes);
+
+        if(arr.isEmpty()) {
+            first = LocalTime.parse("08:00:00");
+            second = LocalTime.parse("17:00:00");
+            while (first.isBefore(second)) {
+                arr.add(first.toString());
+                first = first.plusMinutes(30L);
+            }
+            arr.removeAll(breakTimes);
+            return arr;
+        }
         return arr;
     }
 //
