@@ -92,7 +92,7 @@ export default {
   },
   created() {
       this.getDoctors();
-      this.doctors = this.$store.state.doctorToUpdate;
+      
   },
   
 
