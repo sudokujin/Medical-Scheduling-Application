@@ -102,11 +102,9 @@ public class DoctorTimeController {
         String dateString = "1776-07-04";
         LocalDate customDate = LocalDate.parse(dateString);
         LocalDate dateToPassIn = LocalDate.parse(date);
-        LocalTime first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, dateToPassIn).toString());
-        LocalTime second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, dateToPassIn).toString());
-
+        LocalTime first;
+        LocalTime second;
         ArrayList<String> arr = new ArrayList<>();
-
         String breakTime = "12:00";
         String breakTimeTwo = "12:30";
 
@@ -115,28 +113,45 @@ public class DoctorTimeController {
         breakTimes.add(breakTime);
         breakTimes.add(breakTimeTwo);
 
-        while (first.isBefore(second)) {
-                arr.add(first.toString());
-            first = first.plusMinutes(30L);
-        }
 
-        ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, dateToPassIn);
-        ArrayList<String> appointmentTimes = new ArrayList<>();
-        for (int i = 0; i < appointmentArrayList.size(); i++) {
-            appointmentTimes.add(appointmentArrayList.get(i).getAppointmentTime().toString());
-        }
-        arr.removeAll(appointmentTimes);
-        arr.removeAll(breakTimes);
+        try {
+             first = LocalTime.parse(doctorTimeDao.getStartTimeByDoctorIdDate(id, dateToPassIn).toString());
+             second = LocalTime.parse(doctorTimeDao.getEndTimeByDoctorIdDate(id, dateToPassIn).toString());
 
-        if(arr.isEmpty()) {
-            first = LocalTime.parse("08:00:00");
-            second = LocalTime.parse("17:00:00");
             while (first.isBefore(second)) {
                 arr.add(first.toString());
                 first = first.plusMinutes(30L);
             }
+
+            ArrayList<Appointment> appointmentArrayList = (ArrayList<Appointment>) appointmentDao.getAppointmentsByDoctorIdDate(id, dateToPassIn);
+            ArrayList<String> appointmentTimes = new ArrayList<>();
+            for (int i = 0; i < appointmentArrayList.size(); i++) {
+                appointmentTimes.add(appointmentArrayList.get(i).getAppointmentTime().toString());
+            }
+            arr.removeAll(appointmentTimes);
             arr.removeAll(breakTimes);
+            if(arr.isEmpty()) {
+                first = LocalTime.parse("08:00:00");
+                second = LocalTime.parse("17:00:00");
+                while (first.isBefore(second)) {
+                    arr.add(first.toString());
+                    first = first.plusMinutes(30L);
+                }
+                arr.removeAll(breakTimes);
+                return arr;
+            }
             return arr;
+        } catch (Exception e) {
+            if(arr.isEmpty()) {
+                first = LocalTime.parse("08:00:00");
+                second = LocalTime.parse("17:00:00");
+                while (first.isBefore(second)) {
+                    arr.add(first.toString());
+                    first = first.plusMinutes(30L);
+                }
+                arr.removeAll(breakTimes);
+                return arr;
+            }
         }
         return arr;
     }
