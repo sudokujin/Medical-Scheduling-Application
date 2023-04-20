@@ -105,22 +105,35 @@ export default {
       
       for (let i = 0; i < this.appointments.length; i++ ) {
         let temp = this.appointments[i];
+        let time = this.appointments[i].appointmentTime;
+        let endTime;
+        if (time.slice(3,5) === '30') {
+          endTime = time.slice(0,2);
+          parseInt(endTime);
+          endTime++;
+          endTime = endTime.toString() + ':00:00'; 
+          
+        } else {
+          endTime = time.slice(0,2) + ':30:00';
+          
+        }
         let event = {
+          docId: this.appointments[i].doctorId,
           name: 'Appointment',
-          start: temp.appointmentDate,
-          // end: temp.appointmentDate += 'T' + temp.appointmentTime.slice(0,2) + '30:00',
+          start: temp.appointmentDate + 'T' + temp.appointmentTime,
+          end: temp.appointmentDate += 'T' + endTime,
           color: 'blue',
           timed: false
         };
-        console.log('event', event);
         this.events.push(event);
+        console.log('idevents', event);
       }
     }
-  },
+  },  
   computed: {
     // This should filter doctor apponintments by id - attached to :events for calendar
     filteredAppointments() {
-      return this.$store.state.appointments.filter(
+      return this.events.filter(
         appt => appt.doctorId === this.selectedDoctorId
       );
     },
@@ -128,6 +141,7 @@ export default {
   created() {
     this.getAppointments();
     this.doctors = this.$store.state.doctors;
+    
     
   },
 };
