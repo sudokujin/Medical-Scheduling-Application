@@ -31,7 +31,7 @@ public class JdbcAppointmentDao implements AppointmentDao{
         String sql = "SELECT * " + "FROM appointment;" ;
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        if(results.next()){
+        while (results.next()){
             appointments.add(mapRowToAppointment(results));
         }
         return appointments;
