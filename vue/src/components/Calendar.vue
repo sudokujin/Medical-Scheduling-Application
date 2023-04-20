@@ -51,10 +51,8 @@
           v-model="value"
           :weekdays="weekday"
           :type="type"
-          :events="filteredAppointments"
-          :event-overlap-mode="mode"
-          :event-overlap-threshold="30"
-          :event-color="colors"
+          :events="events"
+          
           :now="now"
         ></v-calendar>
       </v-sheet>
@@ -82,31 +80,14 @@ export default {
         { text: "Mon - Fri", value: [1, 2, 3, 4, 5] },
       ],
       value: "",
-      events: [
-        {
-          title: "Weekly Meeting",
-          date: "2023-04-07",
-          time: "09:00",
-          duration: 45,
-        },
-        {
-          title: "Thomas' Birthday",
-          date: "2023-04-10",
-        },
-        {
-          title: "Mash Potatoes",
-          date: "2023-04-09",
-          time: "12:30",
-          duration: 180,
-        },
-      ],
-
+      events: [],
       colors: ["blue"],
       names: ["Appointment", "Holiday", "PTO"],
       appointments: [],
       now: '2023-04-20',
       selectedDoctorId: null, // id of doctor,
       doctors: [],
+      doctorObj: {}
     };
   },
   methods: {
@@ -116,8 +97,22 @@ export default {
     getAppointments() {
       AppointmentService.getAppointments().then((response) => {
         this.$store.commit("SET_APPOINTMENTS", response.data);
+        this.appointments = this.$store.state.appointments;
       });
     },
+    getEvents() {
+      for (let i = 0; i < this.appointments; i++ ) {
+        let temp = this.appointments[i];
+        let event = {
+          name: 'Appointment',
+          start: temp.appointmentDate += 'T' + temp.appointmentTime,
+          end: temp.appointmentDate += 'T' + temp.appointmentTime.slice(0,2) + '30:00',
+          color: 'blue',
+          timed: true
+        }
+        this.events.push(event);
+      }
+    }
   },
   computed: {
     // This should filter doctor apponintments by id - attached to :events for calendar
@@ -129,8 +124,8 @@ export default {
   },
   created() {
     this.getAppointments();
-    this.appointments = this.$store.state.appointments;
     this.doctors = this.$store.state.doctors;
+    this.getEvents();
   },
 };
 </script>

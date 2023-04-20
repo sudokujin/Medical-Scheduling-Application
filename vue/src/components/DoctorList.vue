@@ -74,7 +74,7 @@ export default {
     },
     // sets current patient object in vuex
     getPatientInfo() {
-      patientService.getPatientByUserId(this.userId).then(response => {
+      patientService.getPatientByUserId(this.$store.state.user.id).then(response => {
         this.$store.commit("SET_PATIENT", response.data);
       });
     }
@@ -82,7 +82,7 @@ export default {
   data() {
     return {
       doctors: [],  
-      userId: this.$store.state.user.id,
+      userId: 0,
       officeInfo: {
         officeName: "Party Doctors United",
         mainAddress: "1420 Savelives st",
@@ -93,7 +93,10 @@ export default {
   },
   created() {
       this.getDoctors();
-      this.getPatientInfo();
+      patientService.getPatientByUserId(this.$store.state.user.id).then(response => {
+        this.$store.commit("SET_PATIENT", response.data);
+      })
+      // this.getPatientInfo();
   }
 };
 </script>
