@@ -1,7 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Appointment;
-import com.techelevator.model.Patient;
 import com.techelevator.model.Review;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -34,6 +32,23 @@ public class JdbcReviewDao implements ReviewDao {
             review = mapRowToReview(results);
         }
         return review;
+    }
+
+
+    @Override
+    public List<Review> getReviewsByDoctorId(Integer doctorId){
+        List<Review> reviews = new ArrayList<>();
+        Review review = null;
+        String sql = "SELECT * FROM review JOIN patient on review.patient_id = patient.patient_id " +
+                "WHERE review.doctor_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+
+        if(results.next()){
+            review = mapRowToReview(results);
+            reviews.add(review);
+        }
+        return reviews;
     }
 
 

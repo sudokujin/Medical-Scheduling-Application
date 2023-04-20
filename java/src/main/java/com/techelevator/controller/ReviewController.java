@@ -16,9 +16,19 @@ import java.util.List;
 public class ReviewController {
     private final ReviewDao reviewDao;
 
-    public ReviewController(ReviewDao reviewDao) {this.reviewDao = reviewDao; }
+    public ReviewController(ReviewDao reviewDao) {
+        this.reviewDao = reviewDao;
+    }
     @GetMapping("/{id}")
-    public Review getReviewByPatientId(@PathVariable int id) {return reviewDao.getReviewByPatientId(id);}
+    public Review getReviewByPatientId(@PathVariable int id) {
+        return reviewDao.getReviewByPatientId(id);
+    }
+
+    @GetMapping("/doctor/{id}}")
+    public List<Review> getReviewsByDoctorId(@PathVariable Integer id) {
+        return reviewDao.getReviewsByDoctorId(id);
+    }
+
     @GetMapping("")
     public List<Review> getAllReviews() {
         return reviewDao.listAllReviews();
