@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface ReviewDao {
 
+    List<Review> getReviewByDoctorId(Integer doctorId);
+
+    List<Review> getReviewsByDoctorId(Integer doctorId);
+
     List<Review> listAllReviews();
 
     Review getReviewByPatientId(int patientId);

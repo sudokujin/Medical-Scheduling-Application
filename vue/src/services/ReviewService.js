@@ -7,6 +7,9 @@ export default {
     getReviewByPatientId(id) {
         return http.get(`/reviews/${id}`);
     },
+    getReviewsByDoctor(id) {
+        return http.get(`/reviews/doctor/${id}`);
+    },
     getAllReviews() {
         return http.get('/reviews');
     },

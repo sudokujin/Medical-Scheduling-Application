@@ -74,7 +74,7 @@
 
                 <div
                 class="review"
-                v-for="review in filteredReviews"  
+                v-for="review in this.$store.state.filteredReviews"  
                 v-bind:key="review.id"
                 > <!-- loop over review objects based on a filtered review list of doctors by id , do not need favorited section line 77-->
                 <h4>{{ review.patientName }}</h4> <!-- patient name here based on patient id -->
@@ -130,6 +130,9 @@ export default {
                     this.getAllReviews();
                 }
             })
+        },
+        getReviewsByDoctor() {
+            reviewService.getReviewsByDoctorId();
         },
         resetForm() {
             this.newReview = {};
