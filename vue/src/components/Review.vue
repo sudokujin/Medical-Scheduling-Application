@@ -44,9 +44,11 @@
                 v-if="showForm === false"
                 >Show Form</a
                 >
-
-                <form v-on:submit.prevent="addNewReview" v-if="showForm === true">
+                <v-col fill-height class="d-flex justify-start"> 
+                <v-card>
+                <v-form class="px-6 pb-5 pt-6" v-on:submit.prevent="addNewReview" v-if="showForm === true">
                 <div class="form-element">
+                    
                     <label for="reviewer">Name:</label>
                     <input id="reviewer" type="text" v-model="newReview.patientName" /> <!-- patient name here based on patient id -->
                 </div>
@@ -70,11 +72,12 @@
                 </div>
                 <input type="submit" value="Save"> <!-- post to database review table on submit button being clicked -->
                 <input type="button" value="Cancel" v-on:click="resetForm">
-                </form>
-
+                </v-form>
+                </v-card>
+                </v-col>
                 <div
                 class="review"
-                v-for="review in this.$store.state.filteredReviews"  
+                v-for="review in this.$store.state.reviews"  
                 v-bind:key="review.id"
                 > <!-- loop over review objects based on a filtered review list of doctors by id , do not need favorited section line 77-->
                 <h4>{{ review.patientName }}</h4> <!-- patient name here based on patient id -->
