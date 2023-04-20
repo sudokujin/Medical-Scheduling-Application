@@ -133,6 +133,7 @@ export default {
       this.$refs.appointmentForm.reset();
     },
     createAppointment() {
+      this.appointment.patientId = this.$store.state.currentPatient.patientId;
       AppointmentService.createAppointment(this.appointment).then(
         (response) => {
           if (response.status === 201) {

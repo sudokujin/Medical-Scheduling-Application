@@ -98,18 +98,21 @@ export default {
       AppointmentService.getAppointments().then((response) => {
         this.$store.commit("SET_APPOINTMENTS", response.data);
         this.appointments = this.$store.state.appointments;
+        this.getEvents();
       });
     },
     getEvents() {
-      for (let i = 0; i < this.appointments; i++ ) {
+      
+      for (let i = 0; i < this.appointments.length; i++ ) {
         let temp = this.appointments[i];
         let event = {
           name: 'Appointment',
-          start: temp.appointmentDate += 'T' + temp.appointmentTime,
-          end: temp.appointmentDate += 'T' + temp.appointmentTime.slice(0,2) + '30:00',
+          start: temp.appointmentDate,
+          // end: temp.appointmentDate += 'T' + temp.appointmentTime.slice(0,2) + '30:00',
           color: 'blue',
-          timed: true
-        }
+          timed: false
+        };
+        console.log('event', event);
         this.events.push(event);
       }
     }
@@ -125,7 +128,7 @@ export default {
   created() {
     this.getAppointments();
     this.doctors = this.$store.state.doctors;
-    this.getEvents();
+    
   },
 };
 </script>

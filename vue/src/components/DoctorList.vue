@@ -94,9 +94,11 @@ export default {
   created() {
       this.getDoctors();
       patientService.getPatientByUserId(this.$store.state.user.id).then(response => {
+        console.log('hi', response);
         this.$store.commit("SET_PATIENT", response.data);
       })
       // this.getPatientInfo();
+      
   }
 };
 </script>
