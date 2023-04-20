@@ -33,7 +33,7 @@ public class JdbcReviewDao implements ReviewDao {
         }
         return review;
     }
-    
+
 
     @Override
     public List<Review> getReviewsByDoctorId(Integer doctorId){
