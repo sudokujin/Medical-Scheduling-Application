@@ -162,7 +162,7 @@ export default {
     },
   },
   created() {
-    
+    this.appointment.patientId = this.$store.state.currentPatient.patientId;
     // AppointmentService.getTimeArray(this.appointment.doctorId, this.appointment.appointmentDate).then(response => {
     //   this.timeSlots = response.data;
     // });

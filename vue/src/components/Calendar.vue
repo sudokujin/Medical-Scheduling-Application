@@ -51,7 +51,7 @@
           v-model="value"
           :weekdays="weekday"
           :type="type"
-          :events="events"
+          :events="filteredAppointments"
           
           :now="now"
         ></v-calendar>
@@ -126,15 +126,16 @@ export default {
           timed: false
         };
         this.events.push(event);
-        console.log('idevents', event);
+        
       }
-    }
+    },
+    
   },  
   computed: {
     // This should filter doctor apponintments by id - attached to :events for calendar
     filteredAppointments() {
-      return this.events.filter(
-        appt => appt.doctorId === this.selectedDoctorId
+      return this.events.filter( appt =>  
+      appt.docId === this.selectedDoctorId  
       );
     },
   },
