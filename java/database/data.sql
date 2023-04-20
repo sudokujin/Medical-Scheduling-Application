@@ -207,23 +207,23 @@ VALUES ((SELECT patient_id FROM patient WHERE patient.first_name='Max'), (SELECT
 -- doctor_time
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (1, '2023/10/10', '8:00:00', '17:00:00');
+	VALUES (1, '2023/04/21', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (2, '2023/10/15', '8:00:00', '17:00:00');
+	VALUES (2, '2023/04/21', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (3, '2023/10/17', '8:00:00', '17:00:00');
+	VALUES (3, '2023/04/21', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (4, '2023/10/18', '8:00:00', '17:00:00');
+	VALUES (4, '2023/04/21', '8:00:00', '17:00:00');
 
 INSERT INTO public.doctor_time(
 	doctor_id, office_date, start_time, end_time)
-	VALUES (5, '2023/10/19', '8:00:00', '17:00:00');
+	VALUES (5, '2023/04/21', '8:00:00', '17:00:00');
 
 
 COMMIT TRANSACTION;
