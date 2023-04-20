@@ -50,6 +50,7 @@ export default {
         {text: 'Specialty', value: 'specialty'},
         {text: 'Suite', value: 'suiteNumber'},
         {text: 'Cost Per Hour', value: 'costPerHour'},
+        {text: 'Phone Extension', value: 'phoneNumber'},
         {text: '', value: 'action'}
      
       ]

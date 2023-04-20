@@ -4,6 +4,11 @@
         <v-card>
         <div id="updateDoctor" class="text-center">
           <v-form class="px-6 pb-5 pt-6" ref="updateDoctorForm" id="userId" v-model="valid" @submit.prevent="updateDoctor();">
+            <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
+            <h1>Enter Updated Information</h1>
             <v-text-field
                 v-model="doctor.firstName"
                 :rules="nameRules"

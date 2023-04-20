@@ -17,6 +17,11 @@
             v-model="valid"
             @submit.prevent="createAppointment"
           >
+          <v-img class='mx-auto' src='../assets/caduceus-transparent-background-8.png'
+            max-width='50px'
+            max-height='100px'
+            > </v-img>
+            <h1>Please Enter Appointment Information</h1>
             <v-text-field
               v-model="appointment.appointmentDate"
               :counter="100"
