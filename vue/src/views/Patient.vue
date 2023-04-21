@@ -31,7 +31,7 @@
 
             <v-text-field
               v-model="patient.emailAddress"
-              :rules="nameRules"
+              :rules="emailRules"
               :counter="50"
               label="E-mail"
               prepend-inner-icon="mdi-email"
@@ -67,7 +67,7 @@
 
             <v-text-field
               v-model="patient.zipcode"
-              :rules="nameRules"
+              :rules="zipcodeRules"
               :counter="50"
               label="Zipcode"
               prepend-inner-icon="mdi-map-marker"
@@ -76,7 +76,7 @@
 
             <v-text-field
               v-model="patient.patientNumber"
-              :rules="nameRules"
+              :rules="phoneNumberRules"
               :counter="50"
               label="Phone Number"
               prepend-inner-icon="mdi-phone"
@@ -85,7 +85,7 @@
 
             <v-text-field
               v-model="patient.birthdate"
-              :rules="nameRules"
+              :rules="dateRules"
               :counter="100"
               label="Birth date"
               prepend-inner-icon="mdi-cake"

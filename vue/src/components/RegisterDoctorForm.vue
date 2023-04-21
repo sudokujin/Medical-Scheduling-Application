@@ -58,7 +58,7 @@
 
            <v-text-field
               v-model="doctor.phoneNumber"
-              :rules="nameRules"
+              :rules="phoneNumberRules"
               :counter="50"
               label="Phone Number"
               prepend-inner-icon="mdi-phone"

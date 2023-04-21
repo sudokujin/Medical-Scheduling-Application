@@ -27,7 +27,7 @@
                 v-model="user.password"
                 label="Password"
                 :counter="20"
-                :rules="nameRules"
+                :rules="passwordRules"
                 prepend-inner-icon="mdi-lock"
                 required
                 outlined
@@ -39,7 +39,7 @@
                 v-model="user.confirmPassword"
                 label="Confirm Password"
                 :counter="20"
-                :rules="nameRules"
+                :rules="passwordRules"
                 prepend-inner-icon="mdi-lock"
                 required
                 outlined

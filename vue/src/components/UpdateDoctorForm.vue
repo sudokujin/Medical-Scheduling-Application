@@ -146,7 +146,7 @@ import DoctorService from '../services/DoctorService'
           this.registrationErrorMsg = 'There were problems registering this user.';
         },
         clearInput() {
-            this.$refs.registerDoctorForm.reset();
+            this.$refs.updateDoctorForm.reset();
         },
         updateDoctor() {
           DoctorService.updateDoctor(this.doctor.doctorId, this.doctor).then(response => {
