@@ -6,10 +6,7 @@
             <p class="description">{{ this.title }}</p>
 
                 <div class="well-display">
-                    <div class="well">
-                        <span class="amount" v-on:click="filter = 0">{{ averageRating }}</span>
-                        Average Rating
-                    </div>
+                   
 
                     <div class="well">
                         <span class="amount" v-on:click="filter = 1">{{ numberOfOneStarReviews }}</span>
